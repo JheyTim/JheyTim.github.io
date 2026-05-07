@@ -1,0 +1,1261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio — Timothy Jhey Sarmiento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0a0a08;
+        --surface: #111110;
+        --border: #2a2a26;
+        --text: #e8e6df;
+        --muted: #6b6960;
+        --accent: #c8f060;
+        --accent2: #f06040;
+        --card-bg: #141412;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'DM Mono', monospace;
+        font-size: 14px;
+        line-height: 1.6;
+        cursor: none;
+        overflow-x: hidden;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block; /* Removes extra space at the bottom */
+      }
+
+      /* Custom cursor */
+      .cursor {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background: var(--accent);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transition:
+          transform 0.15s ease,
+          opacity 0.15s ease;
+        transform: translate(-50%, -50%);
+      }
+      .cursor-ring {
+        position: fixed;
+        width: 36px;
+        height: 36px;
+        border: 1.5px solid var(--accent);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transition:
+          transform 0.35s ease,
+          width 0.2s,
+          height 0.2s,
+          opacity 0.2s;
+        transform: translate(-50%, -50%);
+        opacity: 0.5;
+      }
+      body:hover .cursor {
+        opacity: 1;
+      }
+      a:hover ~ .cursor,
+      button:hover ~ .cursor {
+        transform: translate(-50%, -50%) scale(2.5);
+      }
+
+      /* Noise overlay */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 9000;
+        opacity: 0.4;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 3rem;
+        border-bottom: 1px solid var(--border);
+        background: rgba(10, 10, 8, 0.85);
+        backdrop-filter: blur(12px);
+      }
+      .nav-logo {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.6rem;
+        letter-spacing: 0.08em;
+        color: var(--text);
+        text-decoration: none;
+      }
+      .nav-logo span {
+        color: var(--accent);
+      }
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        padding: 8rem 3rem 4rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-left {
+        padding-right: 3rem;
+      }
+      .hero-eyebrow {
+        font-size: 0.72rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .hero-eyebrow::before {
+        content: '';
+        display: block;
+        width: 2rem;
+        height: 1px;
+        background: var(--accent);
+      }
+      .hero-name {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(5rem, 10vw, 9rem);
+        line-height: 0.9;
+        letter-spacing: 0.02em;
+        color: var(--text);
+        margin-bottom: 1.5rem;
+      }
+      .hero-name em {
+        font-family: 'DM Serif Display', serif;
+        font-style: italic;
+        color: var(--accent);
+      }
+      .hero-sub {
+        color: var(--muted);
+        font-size: 0.85rem;
+        max-width: 380px;
+        line-height: 1.8;
+        margin-bottom: 2.5rem;
+      }
+      .hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: var(--accent);
+        color: var(--bg);
+        text-decoration: none;
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 0.9rem 1.8rem;
+        font-weight: 500;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .hero-cta:hover {
+        background: #d4ff70;
+        transform: translateY(-2px);
+      }
+      .hero-cta svg {
+        transition: transform 0.2s;
+      }
+      .hero-cta:hover svg {
+        transform: translateX(4px);
+      }
+
+      .hero-right {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .hero-stat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+      }
+      .stat-cell {
+        background: var(--surface);
+        padding: 1.8rem;
+        transition: background 0.2s;
+      }
+      .stat-cell:hover {
+        background: var(--card-bg);
+      }
+      .stat-num {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 3.5rem;
+        color: var(--text);
+        line-height: 1;
+      }
+      .stat-num span {
+        color: var(--accent);
+      }
+      .stat-label {
+        color: var(--muted);
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 0.4rem;
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--muted);
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        animation: bounce 2s infinite;
+      }
+      .scroll-indicator::after {
+        content: '';
+        display: block;
+        width: 1px;
+        height: 40px;
+        background: linear-gradient(to bottom, var(--muted), transparent);
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(6px);
+        }
+      }
+
+      /* ── SECTION COMMONS ── */
+      section {
+        padding: 6rem 3rem;
+      }
+      .section-header {
+        display: flex;
+        align-items: baseline;
+        gap: 1.5rem;
+        margin-bottom: 3.5rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 1.5rem;
+      }
+      .section-num {
+        font-size: 0.7rem;
+        color: var(--accent);
+        letter-spacing: 0.15em;
+      }
+      .section-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        letter-spacing: 0.04em;
+        color: var(--text);
+      }
+      .section-line {
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      /* ── ABOUT ── */
+      #about {
+        background: var(--surface);
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: 5rem;
+        align-items: start;
+      }
+      .about-portrait {
+        aspect-ratio: 3/4;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .about-portrait-placeholder {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 6rem;
+        color: var(--border);
+        letter-spacing: 0.05em;
+      }
+      .about-portrait::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 2px solid var(--accent);
+        transform: translate(10px, 10px);
+        pointer-events: none;
+      }
+      .about-tag {
+        display: inline-block;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.75rem;
+        margin: 0.25rem;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+      .about-tag:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .about-bio {
+        color: var(--muted);
+        line-height: 1.9;
+        margin-bottom: 1.5rem;
+        font-size: 0.85rem;
+      }
+      .about-bio strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+      .tags-row {
+        margin-top: 2rem;
+      }
+
+      /* ── PROJECTS ── */
+      #projects {
+        background: var(--bg);
+      }
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 1px;
+        background: var(--border);
+      }
+      .project-card {
+        background: var(--card-bg);
+        padding: 2.5rem;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.3s;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        cursor: default;
+      }
+      .project-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, var(--accent) 0%, transparent 60%);
+        opacity: 0;
+        transition: opacity 0.4s;
+      }
+      .project-card:hover::before {
+        opacity: 0.04;
+      }
+      .project-card:hover {
+        background: #18181520;
+      }
+      .project-num {
+        font-size: 0.65rem;
+        color: var(--accent);
+        letter-spacing: 0.15em;
+      }
+      .project-title {
+        font-family: 'DM Serif Display', serif;
+        font-size: 1.5rem;
+        color: var(--text);
+        line-height: 1.2;
+      }
+      .project-desc {
+        color: var(--muted);
+        font-size: 0.8rem;
+        line-height: 1.7;
+        flex: 1;
+      }
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .project-tag {
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        padding: 0.2rem 0.55rem;
+      }
+      .project-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0.5rem;
+        padding-top: 1.2rem;
+        border-top: 1px solid var(--border);
+      }
+      .project-status {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .status-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .status-dot.planned {
+        background: var(--muted);
+      }
+      .status-dot.wip {
+        background: var(--accent2);
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+      .project-link {
+        color: var(--accent);
+        font-size: 0.7rem;
+        text-decoration: none;
+        letter-spacing: 0.1em;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        transition: gap 0.2s;
+        position: relative;
+        z-index: 10;
+      }
+      .project-link:hover {
+        gap: 0.6rem;
+      }
+
+      /* Add project CTA card */
+      .project-card.add-card {
+        border: 2px dashed var(--border);
+        background: transparent;
+        align-items: center;
+        justify-content: center;
+        min-height: 300px;
+        text-align: center;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .project-card.add-card:hover {
+        border-color: var(--accent);
+        background: rgba(200, 240, 96, 0.03);
+      }
+      .add-icon {
+        width: 48px;
+        height: 48px;
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        color: var(--muted);
+        margin: 0 auto 1rem;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+      .project-card.add-card:hover .add-icon {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .add-label {
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      /* ── SKILLS ── */
+      #skills {
+        background: var(--surface);
+      }
+      .skills-cols {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+      }
+      .skill-group-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.1rem;
+        letter-spacing: 0.08em;
+        color: var(--text);
+        margin-bottom: 1.2rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .skill-group-title span {
+        color: var(--accent);
+      }
+      .skill-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.6rem 0;
+        border-bottom: 1px solid rgba(42, 42, 38, 0.5);
+        font-size: 0.78rem;
+      }
+      .skill-bar {
+        width: 80px;
+        height: 2px;
+        background: var(--border);
+        position: relative;
+        overflow: hidden;
+      }
+      .skill-bar-fill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background: var(--accent);
+        transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        width: 0;
+      }
+      .skill-bar-fill.animate {
+        width: var(--w);
+      }
+
+      /* ── CONTACT ── */
+      #contact {
+        background: var(--bg);
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: start;
+      }
+      .contact-headline {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(3rem, 6vw, 5.5rem);
+        line-height: 0.95;
+        letter-spacing: 0.03em;
+        margin-bottom: 1.5rem;
+      }
+      .contact-headline em {
+        color: var(--accent);
+        font-style: italic;
+        font-family: 'DM Serif Display', serif;
+      }
+      .contact-sub {
+        color: var(--muted);
+        font-size: 0.82rem;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+      }
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .contact-link {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.78rem;
+        padding: 0.9rem 1.2rem;
+        border: 1px solid var(--border);
+        transition:
+          color 0.2s,
+          border-color 0.2s,
+          padding-left 0.2s;
+      }
+      .contact-link:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+        padding-left: 1.6rem;
+      }
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+      .form-group label {
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .form-group input,
+      .form-group textarea {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--text);
+        font-family: 'DM Mono', monospace;
+        font-size: 0.82rem;
+        padding: 0.85rem 1rem;
+        outline: none;
+        transition: border-color 0.2s;
+        resize: vertical;
+      }
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-color: var(--accent);
+      }
+      .form-group textarea {
+        min-height: 110px;
+      }
+      .form-submit {
+        background: transparent;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        font-family: 'DM Mono', monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 1rem 2rem;
+        cursor: none;
+        transition:
+          background 0.2s,
+          color 0.2s;
+        align-self: flex-start;
+      }
+      .form-submit:hover {
+        background: var(--accent);
+        color: var(--bg);
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 2rem 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--surface);
+        font-size: 0.68rem;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+      }
+      footer a {
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      footer a:hover {
+        color: var(--accent);
+      }
+
+      /* ── ANIMATIONS ── */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .fade-up.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 900px) {
+        nav {
+          padding: 1.2rem 1.5rem;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+          padding: 7rem 1.5rem 4rem;
+        }
+        .hero-left {
+          padding-right: 0;
+          margin-bottom: 3rem;
+        }
+        .hero-stat-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        section {
+          padding: 4rem 1.5rem;
+        }
+        .about-grid,
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+        .skills-cols {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+        footer {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- NAV -->
+    <nav>
+      <a class="nav-logo" href="#"><span>//</span> TIMOTHY JHEY SARMIENTO</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left fade-up">
+        <p class="hero-eyebrow">Available for work</p>
+        <h1 class="hero-name">TIMOTHY<br /><em>JHEY</em><br />SARMIENTO</h1>
+        <p class="hero-sub">
+          Software engineer specializing in Node.js, NestJS, AWS serverless
+          architecture, and scalable backend systems.
+        </p>
+        <a href="#projects" class="hero-cta">
+          View Projects
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path
+              d="M2 7h10M7 2l5 5-5 5"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+      </div>
+      <div class="hero-right fade-up" style="transition-delay: 0.15s">
+        <div class="hero-stat-grid">
+          <div class="stat-cell">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num">10<span>+</span></div>
+            <div class="stat-label">Projects Built</div>
+          </div>
+          <!-- <div class="stat-cell">
+            <div class="stat-num">8<span>+</span></div>
+            <div class="stat-label">Happy Clients</div>
+          </div> -->
+          <!-- <div class="stat-cell">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">Lines of Code</div>
+          </div> -->
+        </div>
+      </div>
+      <div class="scroll-indicator">Scroll</div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-header fade-up">
+        <span class="section-num">01</span>
+        <h2 class="section-title">About</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-portrait fade-up">
+          <img src="./image.jpg" alt="Timothy Jhey Sarmiento" />
+        </div>
+        <div class="fade-up" style="transition-delay: 0.1s">
+          <p class="about-bio">
+            Hey — I'm <strong>Timothy Jhey Sarmiento</strong>, a Software
+            Engineer from the Philippines with 3 years of experience building
+            scalable backend systems and cloud-based applications.
+          </p>
+
+          <p class="about-bio">
+            I specialize in
+
+            <strong>Node.js</strong>, <strong>NestJS</strong>,
+            <strong>AWS serverless architecture</strong>, and
+            <strong>RESTful APIs</strong>, with hands-on experience designing
+            microservices, optimizing databases, and maintaining production
+            systems.
+          </p>
+
+          <p class="about-bio">
+            I enjoy building reliable backend solutions that are clean,
+            efficient, and built to scale.
+          </p>
+
+          <p class="about-bio">
+            Open to <strong>B2B engagements</strong>,
+            <strong>contract roles</strong>, and
+            <strong>full-time opportunities</strong> in remote setups worldwide
+            and hybrid roles within the Philippines.
+          </p>
+          <!-- <div class="tags-row">
+            <span class="about-tag">React</span>
+            <span class="about-tag">TypeScript</span>
+            <span class="about-tag">Node.js</span>
+            <span class="about-tag">UI/UX</span>
+            <span class="about-tag">Open Source</span>
+            <span class="about-tag">Figma</span>
+            <span class="about-tag">GraphQL</span>
+            <span class="about-tag">PostgreSQL</span>
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-header fade-up">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Projects</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card fade-up">
+          <span class="project-num">P.1</span>
+          <h3 class="project-title">SwiftCart</h3>
+          <p class="project-desc">
+            SwiftCart Backend is a NestJS microservices monorepo for an
+            e-commerce backend. It includes an API Gateway plus domain services
+            for authentication, products, inventory, orders, payments, and
+            notifications.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">TypeScript</span>
+            <span class="project-tag">NestJS</span>
+            <span class="project-tag">PostgreSQL</span>
+            <span class="project-tag">Redis</span>
+            <span class="project-tag">RabbitMQ</span>
+            <span class="project-tag">JWT</span>
+            <span class="project-tag">TypeORM</span>
+            <span class="project-tag">Docker</span>
+          </div>
+          <div class="project-footer">
+            <span class="project-status">
+              <span class="status-dot wip"></span>
+              <span>In Progress</span>
+            </span>
+            <a
+              href="https://github.com/JheyTim/swiftcart-backend"
+              class="project-link"
+              >View →
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card fade-up" style="transition-delay: 0.1s">
+          <span class="project-num">P.2</span>
+          <h3 class="project-title">Personal Document Vault</h3>
+          <p class="project-desc">
+            Personal Document Vault is a secure REST API that allows users to
+            upload, store, organize, and manage personal documents with
+            end-to-end encryption. Built with Node.js, MongoDB, AWS S3, and
+            integrated encryption to ensure data privacy and security, this API
+            provides a safe and organized way to handle sensitive documents.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Node.js</span>
+            <span class="project-tag">Express.js</span>
+            <span class="project-tag">MongoDB</span>
+            <span class="project-tag">Mongoose</span>
+            <span class="project-tag">AWS S3</span>
+            <span class="project-tag">bcrypt</span>
+            <span class="project-tag">JWT</span>
+            <span class="project-tag">Crypto Module</span>
+            <span class="project-tag">multer</span>
+          </div>
+          <div class="project-footer">
+            <span class="project-status">
+              <span class="status-dot"></span>
+              <span>DONE</span>
+            </span>
+            <a
+              href="https://github.com/JheyTim/Personal-Document-Vault"
+              class="project-link"
+              >View →
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card fade-up" style="transition-delay: 0.2s">
+          <span class="project-num">P.3</span>
+          <h3 class="project-title">Real Time Chat Backend</h3>
+          <p class="project-desc">
+            A Node.js, Express, MongoDB, and Socket.IO backend for a real-time
+            chat application. Key features include: Real-time messaging
+            (Socket.IO), Google OAuth & JWT authentication, AWS S3 file uploads,
+            MongoDB persistence (Mongoose), Role-based access control (RBAC),
+            and Security measures (rate-limiting, secure JWT, helmet.)
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Node.js</span>
+            <span class="project-tag">Express</span>
+            <span class="project-tag">MongoDB</span>
+            <span class="project-tag">Mongoose</span>
+            <span class="project-tag">Socket.IO</span>
+            <span class="project-tag">Passport.js</span>
+            <span class="project-tag">JWT</span>
+            <span class="project-tag">AWS S3</span>
+            <span class="project-tag">Multer</span>
+            <span class="project-tag">Helmet</span>
+            <span class="project-tag">Rate-limiting</span>
+          </div>
+          <div class="project-footer">
+            <span class="project-status">
+              <span class="status-dot"></span>
+              <span>DONE</span>
+            </span>
+            <a
+              href="https://github.com/JheyTim/Real-Time-Chat-Backend"
+              class="project-link"
+              >View →
+            </a>
+          </div>
+        </div>
+
+        <!-- Add Card -->
+        <!-- <div
+          class="project-card add-card fade-up"
+          style="transition-delay: 0.3s"
+        >
+          <div class="add-icon">+</div>
+          <p class="add-label">Your next project goes here</p>
+        </div> -->
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-header fade-up">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Skills</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-cols">
+        <div class="fade-up">
+          <h4 class="skill-group-title"><span>/</span> Backend</h4>
+          <div class="skill-item">Node.js</div>
+          <div class="skill-item">TypeScript</div>
+          <div class="skill-item">JavaScript</div>
+        </div>
+        <div class="fade-up" style="transition-delay: 0.1s">
+          <h4 class="skill-group-title"><span>/</span> Frameworks</h4>
+          <div class="skill-item">Express.js</div>
+          <div class="skill-item">Serverless Framework</div>
+          <div class="skill-item">NestJS</div>
+        </div>
+        <div class="fade-up" style="transition-delay: 0.2s">
+          <h4 class="skill-group-title"><span>/</span> Cloud & DevOps</h4>
+          <div class="skill-item">AWS</div>
+          <div class="skill-item">Docker</div>
+          <div class="skill-item">Kubernetes</div>
+          <div class="skill-item">GitLab CI/CD</div>
+        </div>
+        <div class="fade-up" style="transition-delay: 0.3s">
+          <h4 class="skill-group-title"><span>/</span> Security</h4>
+          <div class="skill-item">JWT</div>
+          <div class="skill-item">RBAC</div>
+          <div class="skill-item">Bcrypt</div>
+          <div class="skill-item">OAuth 2.0</div>
+        </div>
+        <div class="fade-up" style="transition-delay: 0.4s">
+          <h4 class="skill-group-title"><span>/</span> Databases</h4>
+          <div class="skill-item">MongoDB</div>
+          <div class="skill-item">PostgreSQL</div>
+          <div class="skill-item">MySQL</div>
+        </div>
+        <div class="fade-up" style="transition-delay: 0.5s">
+          <h4 class="skill-group-title"><span>/</span> ORMs</h4>
+          <div class="skill-item">Mongoose</div>
+          <div class="skill-item">Sequelize</div>
+          <div class="skill-item">TypeORM</div>
+        </div>
+        <div class="fade-up" style="transition-delay: 0.6s">
+          <h4 class="skill-group-title"><span>/</span> Testing</h4>
+          <div class="skill-item">Mocha</div>
+          <div class="skill-item">Chai</div>
+          <div class="skill-item">Vitest</div>
+        </div>
+        <div class="fade-up" style="transition-delay: 0.7s">
+          <h4 class="skill-group-title">
+            <span>/</span> Version Control & Collaboration
+          </h4>
+          <div class="skill-item">Git</div>
+          <div class="skill-item">GitLab</div>
+          <div class="skill-item">Agile/Scrum</div>
+        </div>
+        <div class="fade-up" style="transition-delay: 0.6s">
+          <h4 class="skill-group-title"><span>/</span> Messaging & Caching</h4>
+          <div class="skill-item">Redis</div>
+          <div class="skill-item">RabbitMQ</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-header fade-up">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Contact</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="fade-up">
+          <h3 class="contact-headline">
+            Let's<br />Build<br /><em>Together.</em>
+          </h3>
+          <p class="contact-sub">
+            Got a project in mind? An idea worth exploring? Or just want to talk
+            code? My inbox is always open.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:timothyjhey@gmail.com" class="contact-link">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <rect
+                  x="1"
+                  y="3"
+                  width="12"
+                  height="8"
+                  rx="1"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M1 4l6 4 6-4"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                />
+              </svg>
+              timothyjhey@gmail.com
+            </a>
+            <a href="https://github.com/jheytim" class="contact-link">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <circle
+                  cx="7"
+                  cy="7"
+                  r="6"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M5 10.5c0-1.5.7-2 1.5-2S8 9 8 10.5"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M4.5 6C4.5 4.5 5.5 3.5 7 3.5S9.5 4.5 9.5 6c0 .9-.5 1.7-1.3 2.1L8 9.5H6l-.2-1.4C5 7.7 4.5 6.9 4.5 6Z"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                />
+              </svg>
+              github.com/jheytim
+            </a>
+            <a href="https://linkedin.com/in/jheytim" class="contact-link">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <rect
+                  x="1"
+                  y="1"
+                  width="12"
+                  height="12"
+                  rx="2"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M4 6v4M4 4.5V4M6.5 10V7.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5V10"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              linkedin.com/in/jheytim
+            </a>
+          </div>
+        </div>
+        <div class="contact-form fade-up" style="transition-delay: 0.12s">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" placeholder="Jane Smith" />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="jane@email.com" />
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Tell me about your project..."></textarea>
+          </div>
+          <button class="form-submit">Send Message →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <span>© 2026 Timothy Jhey Sarmiento. All rights reserved.</span>
+      <span
+        >Built with curiosity &amp;
+        <span style="color: var(--accent)">♥</span></span
+      >
+      <a href="#">Back to top ↑</a>
+    </footer>
+
+    <script>
+      // Custom cursor
+      const cursor = document.getElementById('cursor');
+      const ring = document.getElementById('cursorRing');
+      let mx = 0,
+        my = 0,
+        rx = 0,
+        ry = 0;
+      document.addEventListener('mousemove', (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+      });
+      function animCursor() {
+        cursor.style.left = mx + 'px';
+        cursor.style.top = my + 'px';
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+        requestAnimationFrame(animCursor);
+      }
+      animCursor();
+      document.querySelectorAll('a,button,.project-card').forEach((el) => {
+        el.addEventListener('mouseenter', () => {
+          ring.style.width = '56px';
+          ring.style.height = '56px';
+          ring.style.opacity = '0.8';
+        });
+        el.addEventListener('mouseleave', () => {
+          ring.style.width = '36px';
+          ring.style.height = '36px';
+          ring.style.opacity = '0.5';
+        });
+      });
+
+      // Fade-up on scroll
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              // Animate skill bars
+              e.target
+                .querySelectorAll('.skill-bar-fill')
+                .forEach((b) => b.classList.add('animate'));
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      document
+        .querySelectorAll('.fade-up')
+        .forEach((el) => observer.observe(el));
+
+      // Animate skill bars already visible
+      document.querySelectorAll('#skills .fade-up').forEach((el) => {
+        const skillObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting)
+                e.target
+                  .querySelectorAll('.skill-bar-fill')
+                  .forEach((b) => b.classList.add('animate'));
+            });
+          },
+          { threshold: 0.2 },
+        );
+        skillObserver.observe(el);
+      });
+    </script>
+  </body>
+</html>
