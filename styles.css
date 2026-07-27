@@ -45,6 +45,11 @@ html {
   scroll-padding-top: calc(var(--header-height) + 24px);
 }
 
+html.is-scroll-animating {
+  /* The JavaScript fallback supplies each animation frame on older Safari. */
+  scroll-behavior: auto;
+}
+
 body {
   width: 100%;
   max-width: 100%;

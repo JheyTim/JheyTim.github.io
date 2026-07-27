@@ -12,20 +12,177 @@ const projectsGrid = document.getElementById('projectsGrid');
 const projectEmpty = document.getElementById('projectEmpty');
 const projectResult = document.getElementById('projectResult');
 const filterButtons = [...document.querySelectorAll('[data-filter]')];
-const prefersReducedMotion = window.matchMedia(
-  '(prefers-reduced-motion: reduce)',
-).matches;
+const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+const prefersReducedMotion = motionPreference.matches;
 
 let revealObserver;
 let revealSystemReady = false;
 let revealStartTimer;
 let revealFallbackFrame;
+let navigationScrollFrame;
+let navigationPreviousScrollBehavior;
 
 function element(tagName, className, text) {
   const node = document.createElement(tagName);
   if (className) node.className = className;
   if (text !== undefined) node.textContent = text;
   return node;
+}
+
+function getAnchorDestination(hash) {
+  if (!hash || hash === '#') return null;
+
+  try {
+    return document.getElementById(decodeURIComponent(hash.slice(1)));
+  } catch {
+    return null;
+  }
+}
+
+function getAnchorScrollTop(destination) {
+  if (destination === document.body || destination.id === 'top') return 0;
+
+  const currentTop = window.scrollY || window.pageYOffset || 0;
+  const headerHeight =
+    document.querySelector('.site-header')?.getBoundingClientRect().height || 0;
+  const requestedTop =
+    destination.getBoundingClientRect().top + currentTop - headerHeight - 24;
+  const maximumTop = Math.max(
+    0,
+    document.documentElement.scrollHeight - window.innerHeight,
+  );
+
+  return Math.min(maximumTop, Math.max(0, Math.round(requestedTop)));
+}
+
+function cancelNavigationScroll() {
+  if (navigationScrollFrame) {
+    window.cancelAnimationFrame(navigationScrollFrame);
+    navigationScrollFrame = undefined;
+  }
+
+  const root = document.documentElement;
+  if (navigationPreviousScrollBehavior !== undefined) {
+    root.style.scrollBehavior = navigationPreviousScrollBehavior;
+    navigationPreviousScrollBehavior = undefined;
+  }
+  root.classList.remove('is-scroll-animating');
+}
+
+function focusAnchorDestination(destination) {
+  if (destination === document.body || destination.id === 'top') return;
+
+  const focusTarget = destination.querySelector('h1, h2') || destination;
+  focusTarget.setAttribute('tabindex', '-1');
+
+  try {
+    focusTarget.focus({ preventScroll: true });
+  } catch {
+    focusTarget.focus();
+  }
+}
+
+function scrollToAnchor(destination, { animate = true, focus = false } = {}) {
+  cancelNavigationScroll();
+
+  const root = document.documentElement;
+  const startTop = window.scrollY || window.pageYOffset || 0;
+  const destinationTop = getAnchorScrollTop(destination);
+  const distance = destinationTop - startTop;
+  const shouldAnimate =
+    animate && !motionPreference.matches && Math.abs(distance) > 2;
+
+  root.classList.add('is-scroll-animating');
+
+  if (!shouldAnimate) {
+    navigationPreviousScrollBehavior = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    window.scrollTo(0, destinationTop);
+    navigationScrollFrame = window.requestAnimationFrame(() => {
+      navigationScrollFrame = undefined;
+      root.style.scrollBehavior = navigationPreviousScrollBehavior;
+      navigationPreviousScrollBehavior = undefined;
+      root.classList.remove('is-scroll-animating');
+      if (focus) focusAnchorDestination(destination);
+    });
+    return;
+  }
+
+  const duration = Math.min(900, Math.max(520, Math.abs(distance) * 0.32));
+  let startTime;
+
+  function animateScroll(currentTime) {
+    if (startTime === undefined) startTime = currentTime;
+
+    const progress = Math.min(1, (currentTime - startTime) / duration);
+    const easedProgress =
+      progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+    window.scrollTo(0, startTop + distance * easedProgress);
+
+    if (progress < 1) {
+      navigationScrollFrame = window.requestAnimationFrame(animateScroll);
+      return;
+    }
+
+    navigationScrollFrame = undefined;
+    root.classList.remove('is-scroll-animating');
+    if (focus) focusAnchorDestination(destination);
+  }
+
+  navigationScrollFrame = window.requestAnimationFrame(animateScroll);
+}
+
+function updateAnchorHistory(hash) {
+  if (!window.history?.pushState) return;
+
+  if (window.location.hash === hash) {
+    window.history.replaceState(null, '', hash);
+  } else {
+    window.history.pushState(null, '', hash);
+  }
+}
+
+function initialiseAnchorNavigation() {
+  document.addEventListener('click', (event) => {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    const eventTarget = event.target;
+    if (!(eventTarget instanceof Element)) return;
+
+    const link = eventTarget.closest('a[href^="#"]');
+    if (!link || link.classList.contains('skip-link')) return;
+
+    const hash = link.getAttribute('href');
+    const destination = getAnchorDestination(hash);
+    if (!destination) return;
+
+    event.preventDefault();
+    cancelNavigationScroll();
+    updateAnchorHistory(hash);
+
+    // Let Mobile Safari remove the menu's scroll lock before scrolling.
+    navigationScrollFrame = window.requestAnimationFrame(() => {
+      navigationScrollFrame = undefined;
+      scrollToAnchor(destination, { focus: true });
+    });
+  });
+
+  window.addEventListener('touchstart', cancelNavigationScroll, {
+    passive: true,
+  });
+  window.addEventListener('wheel', cancelNavigationScroll, { passive: true });
 }
 
 function createProjectCard(project, projectIndex) {
@@ -300,7 +457,6 @@ function initialiseMenu() {
     menuToggle.setAttribute('aria-label', 'Close navigation menu');
     mobileMenu.setAttribute('aria-hidden', 'false');
     document.body.classList.add('menu-open');
-    window.setTimeout(() => menuLinks[0]?.focus(), 50);
   }
 
   menuToggle.addEventListener('click', () => {
@@ -312,13 +468,6 @@ function initialiseMenu() {
   menuLinks.forEach((link) => {
     link.addEventListener('click', () => {
       closeMenu();
-
-      const destination = document.querySelector(link.hash);
-      const focusTarget = destination?.querySelector('h2') || destination;
-      if (!focusTarget) return;
-
-      focusTarget.setAttribute('tabindex', '-1');
-      window.setTimeout(() => focusTarget.focus({ preventScroll: true }), 0);
     });
   });
 
@@ -401,13 +550,13 @@ function initialiseFooterYear() {
 function restoreDeepLink() {
   if (!window.location.hash) return;
 
-  const destination = document.querySelector(window.location.hash);
+  const destination = getAnchorDestination(window.location.hash);
   if (!destination) return;
 
   // Project cards are generated at runtime, so repeat the browser's initial
   // fragment jump after the page structure has reached its final height.
   window.requestAnimationFrame(() => {
-    destination.scrollIntoView({ block: 'start' });
+    scrollToAnchor(destination, { animate: false });
   });
 }
 
@@ -416,4 +565,5 @@ initialiseProjectFilters();
 initialiseMenu();
 initialiseHeader();
 initialiseFooterYear();
+initialiseAnchorNavigation();
 restoreDeepLink();
