@@ -1,554 +1,498 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio — Timothy Jhey Sarmiento</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <meta
+      name="description"
+      content="Portfolio of Timothy Jhey Sarmiento, a backend software engineer building scalable Node.js, NestJS, and AWS systems."
+    />
+    <meta name="theme-color" content="#0b0d10" />
+    <meta
+      property="og:title"
+      content="Timothy Jhey Sarmiento — Backend Software Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Scalable backend systems, cloud architecture, and production-ready APIs."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jheytim.is-a.dev/" />
+    <meta property="og:image" content="https://jheytim.is-a.dev/image-portrait.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Timothy Jhey Sarmiento — Backend Software Engineer"
+    />
+    <meta
+      name="twitter:description"
+      content="Scalable backend systems, cloud architecture, and production-ready APIs."
+    />
+    <meta name="twitter:image" content="https://jheytim.is-a.dev/image-portrait.jpg" />
+    <title>Timothy Jhey Sarmiento — Backend Software Engineer</title>
+
+    <link rel="canonical" href="https://jheytim.is-a.dev/" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap"
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230b0d10'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='monospace' font-size='23' fill='%23c9ff63'%3ETJ%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" as="image" href="image-portrait.jpg" type="image/jpeg" />
     <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Timothy Jhey Sarmiento",
+        "url": "https://jheytim.is-a.dev/",
+        "image": "https://jheytim.is-a.dev/image-portrait.jpg",
+        "jobTitle": "Backend Software Engineer",
+        "email": "mailto:timothyjhey@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Manila",
+          "addressCountry": "PH"
+        },
+        "knowsAbout": [
+          "Node.js",
+          "TypeScript",
+          "NestJS",
+          "AWS",
+          "Microservices",
+          "REST APIs"
+        ],
+        "sameAs": [
+          "https://github.com/JheyTim",
+          "https://linkedin.com/in/jheytim"
+        ]
+      }
+    </script>
+    <script>
+      document.documentElement.classList.replace('no-js', 'js');
+    </script>
   </head>
-  <body>
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-ring" id="cursorRing"></div>
+  <body id="top">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <!-- NAV -->
-    <nav>
-      <a class="nav-logo" href="#"><span>//</span> TIMOTHY JHEY SARMIENTO</a>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
+    <div class="page-glow page-glow--one" aria-hidden="true"></div>
+    <div class="page-glow page-glow--two" aria-hidden="true"></div>
 
-    <!-- MOBILE FULLSCREEN MENU -->
-    <div class="nav-mobile" id="mobileMenu">
-      <a href="#about" onclick="closeMenu()">About</a>
-      <a href="#projects" onclick="closeMenu()">Work</a>
-      <a href="#skills" onclick="closeMenu()">Skills</a>
-      <a href="#contact" onclick="closeMenu()">Contact</a>
+    <header class="site-header">
+      <nav class="site-nav container" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="Timothy Jhey Sarmiento, home">
+          <span class="brand-mark">TJ</span>
+          <span class="brand-copy">
+            <strong>Timothy Jhey</strong>
+            <span>Backend engineer</span>
+          </span>
+        </a>
+
+        <ul class="desktop-nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+        </ul>
+
+        <a class="nav-cta" href="#contact"
+          >Let’s talk <span aria-hidden="true">↗</span></a
+        >
+
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          type="button"
+          aria-controls="mobileMenu"
+          aria-expanded="false"
+          aria-label="Open navigation menu"
+        >
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <nav aria-label="Mobile navigation">
+        <a href="#about"><span>01</span> About</a>
+        <a href="#projects"><span>02</span> Projects</a>
+        <a href="#skills"><span>03</span> Skills</a>
+        <a href="#contact"><span>04</span> Contact</a>
+      </nav>
+      <p>Manila, Philippines · Open to remote opportunities</p>
     </div>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-left">
-        <p class="hero-eyebrow">Available for work</p>
-        <h1 class="hero-name">
-          <span class="word"><span>TIMOTHY</span></span
-          ><br />
-          <em class="word"><span>JHEY</span></em
-          ><br />
-          <span class="word"><span>SARMIENTO</span></span>
-        </h1>
-        <p class="hero-sub">
-          Software engineer specializing in Node.js, NestJS, AWS serverless
-          architecture, and scalable backend systems.
-        </p>
-        <a href="#projects" class="hero-cta">
-          View Projects
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path
-              d="M2 7h10M7 2l5 5-5 5"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+    <main id="main-content">
+      <section class="hero container" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow hero-eyebrow" data-reveal>
+            <span class="availability-dot" aria-hidden="true"></span>
+            Available for selected opportunities
+          </p>
+
+          <h1 id="hero-title" data-reveal>
+            Backend systems,<br />
+            built for the <span>real world.</span>
+          </h1>
+
+          <p class="hero-intro" data-reveal>
+            I’m <strong>Timothy Jhey Sarmiento</strong>, a software engineer who
+            turns complex product requirements into reliable APIs, cloud
+            services, and systems that scale.
+          </p>
+
+          <div class="hero-actions" data-reveal>
+            <a class="button button--primary" href="#projects">
+              Explore my work
+              <span aria-hidden="true">↓</span>
+            </a>
+            <a
+              class="button button--ghost"
+              href="https://github.com/JheyTim"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <dl class="hero-facts" data-reveal>
+            <div>
+              <dt>Experience</dt>
+              <dd>3+ years</dd>
+            </div>
+            <div>
+              <dt>Public projects</dt>
+              <dd><span data-project-count>8</span> builds</dd>
+            </div>
+            <div>
+              <dt>Based in</dt>
+              <dd>Manila, PH</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="hero-visual">
+          <div class="portrait-frame">
+            <img
+              src="image-portrait.jpg"
+              alt="Portrait of Timothy Jhey Sarmiento"
+              width="1200"
+              height="1544"
+              decoding="sync"
+              fetchpriority="high"
             />
-          </svg>
-        </a>
-      </div>
-      <div class="hero-right">
-        <div class="hero-stat-grid">
-          <div class="stat-cell">
-            <div class="stat-num" data-count="3">0</div>
-            <div class="stat-label">Years Experience</div>
-          </div>
-          <div class="stat-cell">
-            <div class="stat-num" data-count="10">0<span>+</span></div>
-            <div class="stat-label">Projects Built</div>
+            <div class="portrait-label portrait-label--bottom">
+              <span class="availability-dot" aria-hidden="true"></span>
+              <strong>Open to B2B · Contract · Full-time</strong>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="scroll-indicator">Scroll</div>
-    </section>
+      </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="section-header fade-up">
-        <span class="section-num">01</span>
-        <h2 class="section-title">About</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="about-grid">
-        <div class="about-portrait fade-left">
-          <img src="./image.jpg" alt="Timothy Jhey Sarmiento" />
-        </div>
-        <div class="fade-right" style="transition-delay: 0.15s">
-          <p class="about-bio">
-            Hey — I'm <strong>Timothy Jhey Sarmiento</strong>, a Software
-            Engineer from the Philippines with 3 years of experience building
-            scalable backend systems and cloud-based applications.
-          </p>
-          <p class="about-bio">
-            I specialize in <strong>Node.js</strong>, <strong>NestJS</strong>,
-            <strong>AWS serverless architecture</strong>, and
-            <strong>RESTful APIs</strong>, with hands-on experience designing
-            microservices, optimizing databases, and maintaining production
-            systems.
-          </p>
-          <p class="about-bio">
-            I enjoy building reliable backend solutions that are clean,
-            efficient, and built to scale.
-          </p>
-          <p class="about-bio">
-            Open to <strong>B2B engagements</strong>,
-            <strong>contract roles</strong>, and
-            <strong>full-time opportunities</strong> in remote setups worldwide
-            and hybrid roles within the Manila, Philippines.
-          </p>
+      <div class="stack-strip" aria-label="Core technology stack">
+        <div class="container stack-strip__inner">
+          <span>Node.js</span>
+          <i aria-hidden="true"></i>
+          <span>TypeScript</span>
+          <i aria-hidden="true"></i>
+          <span>NestJS</span>
+          <i aria-hidden="true"></i>
+          <span>AWS</span>
+          <i aria-hidden="true"></i>
+          <span>PostgreSQL</span>
+          <i aria-hidden="true"></i>
+          <span>Microservices</span>
         </div>
       </div>
-    </section>
 
-    <!-- PROJECTS -->
-    <section id="projects">
-      <div class="section-header fade-up">
-        <span class="section-num">02</span>
-        <h2 class="section-title">Projects</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="projects-grid">
-        <div class="project-card fade-up">
-          <span class="project-num">P.01</span>
-          <h3 class="project-title">SwiftCart</h3>
-          <p class="project-desc">
-            SwiftCart Backend is a NestJS microservices monorepo for an
-            e-commerce backend. It includes an API Gateway plus domain services
-            for authentication, products, inventory, orders, payments, and
-            notifications.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">TypeScript</span>
-            <span class="project-tag">NestJS</span>
-            <span class="project-tag">PostgreSQL</span>
-            <span class="project-tag">Redis</span>
-            <span class="project-tag">RabbitMQ</span>
-            <span class="project-tag">JWT</span>
-            <span class="project-tag">TypeORM</span>
-            <span class="project-tag">Docker</span>
-            <span class="project-tag">Kubernetes</span>
-            <span class="project-tag">Axios</span>
-          </div>
-          <div class="project-footer">
-            <span class="project-status">
-              <span class="status-dot"></span>
-              <span>DONE</span>
-            </span>
-            <a
-              href="https://github.com/JheyTim/swiftcart-backend"
-              class="project-link"
-              >View →</a
-            >
-          </div>
-        </div>
-
-        <div class="project-card fade-up" style="transition-delay: 0.1s">
-          <span class="project-num">P.02</span>
-          <h3 class="project-title">Personal Document Vault</h3>
-          <p class="project-desc">
-            A secure REST API that allows users to upload, store, organize, and
-            manage personal documents with end-to-end encryption. Built with
-            Node.js, MongoDB, AWS S3, and integrated encryption to ensure data
-            privacy and security.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">Node.js</span>
-            <span class="project-tag">Express.js</span>
-            <span class="project-tag">MongoDB</span>
-            <span class="project-tag">Mongoose</span>
-            <span class="project-tag">AWS S3</span>
-            <span class="project-tag">bcrypt</span>
-            <span class="project-tag">JWT</span>
-            <span class="project-tag">Crypto</span>
-            <span class="project-tag">multer</span>
-          </div>
-          <div class="project-footer">
-            <span class="project-status">
-              <span class="status-dot"></span>
-              <span>Done</span>
-            </span>
-            <a
-              href="https://github.com/JheyTim/Personal-Document-Vault"
-              class="project-link"
-              >View →</a
-            >
-          </div>
-        </div>
-
-        <div class="project-card fade-up" style="transition-delay: 0.2s">
-          <span class="project-num">P.03</span>
-          <h3 class="project-title">Real Time Chat Backend</h3>
-          <p class="project-desc">
-            A Node.js, Express, MongoDB, and Socket.IO backend for a real-time
-            chat application featuring Google OAuth, JWT auth, AWS S3 file
-            uploads, RBAC, and security measures including rate-limiting and
-            Helmet.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">Node.js</span>
-            <span class="project-tag">Express.js</span>
-            <span class="project-tag">MongoDB</span>
-            <span class="project-tag">Mongoose </span>
-            <span class="project-tag">Socket.IO</span>
-            <span class="project-tag">OAuth 2.0</span>
-            <span class="project-tag">JWT</span>
-            <span class="project-tag">Multer</span>
-            <span class="project-tag">AWS S3</span>
-            <span class="project-tag">Helmet</span>
-            <span class="project-tag">Rate-limiting</span>
-          </div>
-          <div class="project-footer">
-            <span class="project-status">
-              <span class="status-dot"></span>
-              <span>Done</span>
-            </span>
-            <a
-              href="https://github.com/JheyTim/Real-Time-Chat-Backend"
-              class="project-link"
-              >View →</a
-            >
-          </div>
-        </div>
-
-        <div class="project-card fade-up" style="transition-delay: 0.3s">
-          <span class="project-num">P.04</span>
-          <h3 class="project-title">Book Recommendation</h3>
-          <p class="project-desc">
-            A backend application designed to help users discover new books,
-            read reviews, and get personalized recommendations based on their
-            interests. Built with NestJS, MongoDB, and the Google Books API, it
-            supports user authentication, book search, user reviews, and a basic
-            recommendation engine.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">NestJS</span>
-            <span class="project-tag">MongoDB</span>
-            <span class="project-tag">Mongoose</span>
-            <span class="project-tag">JWT</span>
-            <span class="project-tag">Axios</span>
-            <span class="project-tag">Bcrypt</span>
-          </div>
-          <div class="project-footer">
-            <span class="project-status">
-              <span class="status-dot"></span>
-              <span>Done</span>
-            </span>
-            <a
-              href="https://github.com/JheyTim/Book-Recommendation"
-              class="project-link"
-              >View →</a
-            >
-          </div>
-        </div>
-
-        <div class="project-card fade-up" style="transition-delay: 0.4s">
-          <span class="project-num">P.05</span>
-          <h3 class="project-title">Crypto Price Tracker</h3>
-          <p class="project-desc">
-            An advanced cryptocurrency price tracking application that provides
-            real-time updates, portfolio management, price alerts, and
-            historical data analysis. Built with TypeScript, Node.js, Express,
-            and MongoDB, this backend application offers a robust RESTful API
-            for interacting with cryptocurrency data.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">Node.js</span>
-            <span class="project-tag">Express.js</span>
-            <span class="project-tag">TypeScript</span>
-            <span class="project-tag">MongoDB </span>
-            <span class="project-tag">Mongoose</span>
-            <span class="project-tag">ws</span>
-            <span class="project-tag">node-cron</span>
-            <span class="project-tag">JWT</span>
-            <span class="project-tag">Bcrypt</span>
-            <span class="project-tag">winston</span>
-          </div>
-          <div class="project-footer">
-            <span class="project-status">
-              <span class="status-dot"></span>
-              <span>Done</span>
-            </span>
-            <a
-              href="https://github.com/JheyTim/Crypto-Price-Tracker"
-              class="project-link"
-              >View →</a
-            >
-          </div>
-        </div>
-
-        <div class="project-card fade-up" style="transition-delay: 0.5s">
-          <span class="project-num">P.06</span>
-          <h3 class="project-title">Movie Reservation System</h3>
-          <p class="project-desc">
-            This is the backend system for a movie reservation service, which
-            allows users to sign up, log in, browse movies, reserve seats for
-            specific showtimes, and manage their reservations. The system also
-            includes user authentication, movie and showtime management, seat
-            reservation functionality, and reporting features.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">Node.js</span>
-            <span class="project-tag">Express.js</span>
-            <span class="project-tag">Sequelize</span>
-            <span class="project-tag">MySQL</span>
-            <span class="project-tag">JWT</span>
-            <span class="project-tag">Bcrypt</span>
-          </div>
-          <div class="project-footer">
-            <span class="project-status">
-              <span class="status-dot"></span>
-              <span>Done</span>
-            </span>
-            <a
-              href="https://github.com/JheyTim/Movie-Reservation-System"
-              class="project-link"
-              >View →</a
-            >
-          </div>
-        </div>
-
-        <div class="project-card fade-up" style="transition-delay: 0.6s">
-          <span class="project-num">P.07</span>
-          <h3 class="project-title">Healthcare Management System</h3>
-          <p class="project-desc">
-            The Secure Healthcare Management System is a full-featured
-            application designed to streamline healthcare services. It allows
-            patients and healthcare providers to manage appointments, securely
-            exchange documents, track billing and payments, and communicate in
-            real time.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">Node.js</span>
-            <span class="project-tag">Express.js</span>
-            <span class="project-tag">MongoDB</span>
-            <span class="project-tag">Mongoose</span>
-            <span class="project-tag">JWT</span>
-            <span class="project-tag">Bcrypt</span>
-            <span class="project-tag">Speakeasy</span>
-            <span class="project-tag">Stripe</span>
-            <span class="project-tag">Multer</span>
-            <span class="project-tag">Socket.IO</span>
-            <span class="project-tag">Winston</span>
-            <span class="project-tag">node-cron</span>
-          </div>
-          <div class="project-footer">
-            <span class="project-status">
-              <span class="status-dot"></span>
-              <span>Done</span>
-            </span>
-            <a
-              href="https://github.com/JheyTim/healthcare-management-system"
-              class="project-link"
-              >View →</a
-            >
-          </div>
-        </div>
-
-        <div class="project-card fade-up" style="transition-delay: 0.7s">
-          <span class="project-num">P.08</span>
-          <h3 class="project-title">BankLite</h3>
-          <p class="project-desc">
-            BankLite is a production-style digital banking backend built with
-            TypeScript, NestJS, PostgreSQL, RabbitMQ, Docker, Kubernetes,
-            centralized logging, and local AWS-compatible storage through Floci.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">TypeScript</span>
-            <span class="project-tag">NestJS</span>
-            <span class="project-tag">PostgreSQL</span>
-            <span class="project-tag">RabbitMQ</span>
-            <span class="project-tag">JWT</span>
-            <span class="project-tag">TypeORM</span>
-            <span class="project-tag">Docker</span>
-            <span class="project-tag">Kubernetes</span>
-            <span class="project-tag">AWS S3</span>
-            <span class="project-tag">Prometheus</span>
-          </div>
-          <div class="project-footer">
-            <span class="project-status">
-              <span class="status-dot wip"></span>
-              <span>In progress</span>
-            </span>
-            <a href="https://github.com/JheyTim/BankLite" class="project-link"
-              >View →</a
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-      <div class="section-header fade-up">
-        <span class="section-num">03</span>
-        <h2 class="section-title">Skills</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="skills-cols">
-        <div class="fade-up">
-          <h4 class="skill-group-title"><span>/</span> Backend</h4>
-          <div class="skill-item">Node.js</div>
-          <div class="skill-item">TypeScript</div>
-          <div class="skill-item">JavaScript</div>
-        </div>
-        <div class="fade-up" style="transition-delay: 0.05s">
-          <h4 class="skill-group-title"><span>/</span> Frameworks</h4>
-          <div class="skill-item">Express.js</div>
-          <div class="skill-item">Serverless Framework</div>
-          <div class="skill-item">NestJS</div>
-        </div>
-        <div class="fade-up" style="transition-delay: 0.1s">
-          <h4 class="skill-group-title"><span>/</span> Cloud & DevOps</h4>
-          <div class="skill-item">AWS</div>
-          <div class="skill-item">Docker</div>
-          <div class="skill-item">Kubernetes</div>
-          <div class="skill-item">GitLab CI/CD</div>
-        </div>
-        <div class="fade-up" style="transition-delay: 0.15s">
-          <h4 class="skill-group-title"><span>/</span> Security</h4>
-          <div class="skill-item">JWT</div>
-          <div class="skill-item">RBAC</div>
-          <div class="skill-item">Bcrypt</div>
-          <div class="skill-item">OAuth 2.0</div>
-        </div>
-        <div class="fade-up" style="transition-delay: 0.2s">
-          <h4 class="skill-group-title"><span>/</span> Databases</h4>
-          <div class="skill-item">MongoDB</div>
-          <div class="skill-item">PostgreSQL</div>
-          <div class="skill-item">MySQL</div>
-        </div>
-        <div class="fade-up" style="transition-delay: 0.25s">
-          <h4 class="skill-group-title"><span>/</span> ORMs</h4>
-          <div class="skill-item">Mongoose</div>
-          <div class="skill-item">Sequelize</div>
-          <div class="skill-item">TypeORM</div>
-        </div>
-        <div class="fade-up" style="transition-delay: 0.3s">
-          <h4 class="skill-group-title"><span>/</span> Testing</h4>
-          <div class="skill-item">Mocha</div>
-          <div class="skill-item">Chai</div>
-          <div class="skill-item">Vitest</div>
-        </div>
-        <div class="fade-up" style="transition-delay: 0.35s">
-          <h4 class="skill-group-title"><span>/</span> Version Control</h4>
-          <div class="skill-item">Git</div>
-          <div class="skill-item">GitLab</div>
-        </div>
-        <div class="fade-up" style="transition-delay: 0.4s">
-          <h4 class="skill-group-title"><span>/</span> Messaging & Caching</h4>
-          <div class="skill-item">Redis</div>
-          <div class="skill-item">RabbitMQ</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="section-header fade-up">
-        <span class="section-num">04</span>
-        <h2 class="section-title">Contact</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="contact-wrapper">
-        <div class="fade-left">
-          <h3 class="contact-headline">
-            Let's<br />Build<br /><em>Together.</em>
-          </h3>
-          <p class="contact-sub">
-            Got a project in mind? An idea worth exploring? Or just want to talk
-            code? My inbox is always open.
-          </p>
-        </div>
-        <div class="contact-links fade-right" style="transition-delay: 0.15s">
-          <a href="mailto:timothyjhey@gmail.com" class="contact-link">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <rect
-                x="1"
-                y="3"
-                width="12"
-                height="8"
-                rx="1"
-                stroke="currentColor"
-                stroke-width="1.2"
-              />
-              <path d="M1 4l6 4 6-4" stroke="currentColor" stroke-width="1.2" />
-            </svg>
-            timothyjhey@gmail.com
-          </a>
-          <a href="https://github.com/jheytim" class="contact-link">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <circle
-                cx="7"
-                cy="7"
-                r="6"
-                stroke="currentColor"
-                stroke-width="1.2"
-              />
-              <path
-                d="M5 10.5c0-1.5.7-2 1.5-2S8 9 8 10.5"
-                stroke="currentColor"
-                stroke-width="1.2"
-              />
-              <path
-                d="M4.5 6C4.5 4.5 5.5 3.5 7 3.5S9.5 4.5 9.5 6c0 .9-.5 1.7-1.3 2.1L8 9.5H6l-.2-1.4C5 7.7 4.5 6.9 4.5 6Z"
-                stroke="currentColor"
-                stroke-width="1.2"
-              />
-            </svg>
-            github.com/jheytim
-          </a>
-          <a href="https://linkedin.com/in/jheytim" class="contact-link">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <rect
-                x="1"
-                y="1"
-                width="12"
-                height="12"
-                rx="2"
-                stroke="currentColor"
-                stroke-width="1.2"
-              />
-              <path
-                d="M4 6v4M4 4.5V4M6.5 10V7.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5V10"
-                stroke="currentColor"
-                stroke-width="1.2"
-                stroke-linecap="round"
-              />
-            </svg>
-            linkedin.com/in/jheytim
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-      <span>© 2026 Timothy Jhey Sarmiento. All rights reserved.</span>
-      <span
-        >Built with curiosity &amp;
-        <span style="color: var(--accent)">♥</span></span
+      <section
+        class="section section--about"
+        id="about"
+        aria-labelledby="about-title"
       >
-      <a href="#">Back to top ↑</a>
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <p class="section-kicker"><span>01</span> About</p>
+            <h2 id="about-title">Engineering clarity into complex systems.</h2>
+          </div>
+
+          <div class="about-layout">
+            <div class="about-lead" data-reveal>
+              <p>
+                I’m a software engineer from the Philippines with three years of
+                experience building scalable backend systems and cloud-based
+                applications.
+              </p>
+              <p>
+                I specialize in <strong>Node.js</strong>,
+                <strong>NestJS</strong>,
+                <strong>AWS serverless architecture</strong>, and
+                <strong>RESTful APIs</strong>—from designing microservices and
+                data models to keeping production systems dependable.
+              </p>
+            </div>
+
+            <div class="about-cards">
+              <article class="info-card" data-reveal>
+                <span class="info-card__icon" aria-hidden="true">01</span>
+                <h3>How I work</h3>
+                <p>
+                  Clear contracts, pragmatic architecture, and thoughtful
+                  trade-offs. I care about systems that remain understandable as
+                  teams and traffic grow.
+                </p>
+              </article>
+              <article class="info-card info-card--accent" data-reveal>
+                <span class="info-card__icon" aria-hidden="true">02</span>
+                <h3>What I’m looking for</h3>
+                <p>
+                  B2B engagements, contract roles, and full-time opportunities
+                  in remote teams worldwide or hybrid teams in Metro Manila.
+                </p>
+                <a href="#contact"
+                  >Start a conversation <span aria-hidden="true">↗</span></a
+                >
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section section--projects"
+        id="projects"
+        aria-labelledby="projects-title"
+      >
+        <div class="container">
+          <div class="projects-heading">
+            <div class="section-heading" data-reveal>
+              <p class="section-kicker"><span>02</span> Selected work</p>
+              <h2 id="projects-title">Things I’ve built—and what’s next.</h2>
+            </div>
+            <p class="section-summary" data-reveal>
+              Production-minded backend projects spanning commerce, finance,
+              security, and real-time systems. Use the roadmap filter to follow
+              work that is still taking shape.
+            </p>
+          </div>
+
+          <div class="project-toolbar" data-reveal>
+            <div
+              class="project-filters"
+              role="group"
+              aria-label="Filter projects by status"
+            >
+              <button
+                class="filter-button is-active"
+                type="button"
+                data-filter="all"
+                aria-pressed="true"
+              >
+                All <span data-filter-count="all">8</span>
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-filter="completed"
+                aria-pressed="false"
+              >
+                Shipped <span data-filter-count="completed">7</span>
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-filter="building"
+                aria-pressed="false"
+              >
+                In progress <span data-filter-count="building">1</span>
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-filter="planned"
+                aria-pressed="false"
+              >
+                Roadmap <span data-filter-count="planned">0</span>
+              </button>
+            </div>
+            <p class="project-result" id="projectResult" aria-live="polite">
+              Showing all projects
+            </p>
+          </div>
+
+          <div class="projects-grid" id="projectsGrid"></div>
+
+          <div class="project-empty" id="projectEmpty" hidden>
+            <span aria-hidden="true">⌁</span>
+            <h3>No public roadmap projects yet.</h3>
+            <p>The next build will appear here when it is ready to share.</p>
+          </div>
+
+          <noscript>
+            <p class="noscript-message">
+              Please enable JavaScript to view the interactive project list, or
+              visit <a href="https://github.com/JheyTim">my GitHub profile</a>.
+            </p>
+          </noscript>
+        </div>
+      </section>
+
+      <section
+        class="section section--skills"
+        id="skills"
+        aria-labelledby="skills-title"
+      >
+        <div class="container">
+          <div class="skills-heading">
+            <div class="section-heading" data-reveal>
+              <p class="section-kicker"><span>03</span> Capabilities</p>
+              <h2 id="skills-title">
+                Tools I trust to ship reliable software.
+              </h2>
+            </div>
+            <p class="section-summary" data-reveal>
+              A backend-first toolkit shaped by real production work—from API
+              design and data layers to cloud infrastructure and delivery.
+            </p>
+          </div>
+
+          <div class="skills-grid">
+            <article class="skill-card" data-reveal>
+              <div class="skill-card__top">
+                <span>01</span>
+                <h3>Languages &amp; runtime</h3>
+              </div>
+              <ul>
+                <li>Node.js</li>
+                <li>TypeScript</li>
+                <li>JavaScript</li>
+              </ul>
+            </article>
+            <article class="skill-card" data-reveal>
+              <div class="skill-card__top">
+                <span>02</span>
+                <h3>Frameworks &amp; APIs</h3>
+              </div>
+              <ul>
+                <li>NestJS</li>
+                <li>Express.js</li>
+                <li>RESTful APIs</li>
+                <li>Serverless Framework</li>
+              </ul>
+            </article>
+            <article class="skill-card" data-reveal>
+              <div class="skill-card__top">
+                <span>03</span>
+                <h3>Cloud &amp; delivery</h3>
+              </div>
+              <ul>
+                <li>AWS</li>
+                <li>Docker</li>
+                <li>Kubernetes</li>
+                <li>GitLab CI/CD</li>
+              </ul>
+            </article>
+            <article class="skill-card" data-reveal>
+              <div class="skill-card__top">
+                <span>04</span>
+                <h3>Data &amp; messaging</h3>
+              </div>
+              <ul>
+                <li>PostgreSQL</li>
+                <li>MongoDB</li>
+                <li>MySQL</li>
+                <li>Redis</li>
+                <li>RabbitMQ</li>
+              </ul>
+            </article>
+            <article class="skill-card" data-reveal>
+              <div class="skill-card__top">
+                <span>05</span>
+                <h3>Data access &amp; testing</h3>
+              </div>
+              <ul>
+                <li>TypeORM</li>
+                <li>Mongoose</li>
+                <li>Sequelize</li>
+                <li>Mocha</li>
+                <li>Chai</li>
+                <li>Vitest</li>
+              </ul>
+            </article>
+            <article class="skill-card" data-reveal>
+              <div class="skill-card__top">
+                <span>06</span>
+                <h3>Security &amp; workflow</h3>
+              </div>
+              <ul>
+                <li>JWT</li>
+                <li>OAuth 2.0</li>
+                <li>RBAC</li>
+                <li>Bcrypt</li>
+                <li>Git &amp; GitLab</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section section--contact"
+        id="contact"
+        aria-labelledby="contact-title"
+      >
+        <div class="container">
+          <div class="contact-panel" data-reveal>
+            <div class="contact-panel__copy">
+              <p class="section-kicker section-kicker--dark">
+                <span>04</span> Contact
+              </p>
+              <h2 id="contact-title">Have a hard backend problem?</h2>
+              <p>
+                Tell me what you’re building. I’d love to hear where I can help.
+              </p>
+            </div>
+            <div class="contact-panel__actions">
+              <a class="contact-email" href="mailto:timothyjhey@gmail.com">
+                <span>Email me</span>
+                <strong>timothyjhey@gmail.com</strong>
+                <i aria-hidden="true">↗</i>
+              </a>
+              <div class="social-links">
+                <a
+                  href="https://github.com/JheyTim"
+                  target="_blank"
+                  rel="noreferrer"
+                  >GitHub ↗</a
+                >
+                <a
+                  href="https://linkedin.com/in/jheytim"
+                  target="_blank"
+                  rel="noreferrer"
+                  >LinkedIn ↗</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <p>© <span id="currentYear">2026</span> Timothy Jhey Sarmiento</p>
+        <p>Designed &amp; built with care in Manila.</p>
+        <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+      </div>
     </footer>
 
+    <script src="projects.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
