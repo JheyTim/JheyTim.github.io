@@ -511,10 +511,14 @@ button {
   z-index: -1;
   width: 360px;
   height: 360px;
-  opacity: 0.16;
+  opacity: 0;
   background-image: radial-gradient(circle, var(--muted) 1px, transparent 1px);
   background-size: 18px 18px;
+  -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 72%);
   mask-image: radial-gradient(circle, #000 0%, transparent 72%);
+}
+
+.motion-ready .hero::before {
   animation: hero-grid-in 1.15s 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -560,11 +564,14 @@ button {
   border-radius: inherit;
   opacity: 0;
   transform: scale(0.7);
-  animation: availability-pulse 2.4s ease-out infinite;
   pointer-events: none;
 }
 
-.portrait-label .availability-dot::after {
+.motion-ready .availability-dot::after {
+  animation: availability-pulse 2.4s ease-out infinite;
+}
+
+.motion-ready .portrait-label .availability-dot::after {
   animation-delay: 1.2s;
 }
 
@@ -765,12 +772,18 @@ button {
 
 .portrait-frame::before {
   background: var(--accent);
-  animation: portrait-wipe 760ms 120ms cubic-bezier(0.76, 0, 0.24, 1) both;
 }
 
 .portrait-frame::after {
   z-index: 4;
   background: var(--surface-raised);
+}
+
+.motion-ready .portrait-frame::before {
+  animation: portrait-wipe 760ms 120ms cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+
+.motion-ready .portrait-frame::after {
   animation: portrait-wipe 880ms 210ms cubic-bezier(0.76, 0, 0.24, 1) both;
 }
 
@@ -807,16 +820,17 @@ button {
   left: 20px;
   gap: 0.75rem;
   padding: 0.9rem 1rem;
+}
+
+.motion-ready .portrait-label--bottom {
   animation: portrait-label-in 520ms 980ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes portrait-label-in {
   from {
-    opacity: 0;
     transform: translateY(10px);
   }
   to {
-    opacity: 1;
     transform: none;
   }
 }
@@ -1285,7 +1299,7 @@ button {
 .project-card__signal span:nth-child(7) { --signal-delay: 420ms; }
 .project-card__signal span:nth-child(8) { --signal-delay: 465ms; }
 
-.js .project-card.is-visible .project-card__signal span {
+.motion-ready .project-card.is-visible .project-card__signal span {
   animation: project-signal-in 620ms cubic-bezier(0.16, 1, 0.3, 1)
     var(--signal-delay) backwards;
 }
@@ -1514,7 +1528,7 @@ button {
 .skill-card li:nth-child(5) { --chip-delay: 340ms; }
 .skill-card li:nth-child(6) { --chip-delay: 385ms; }
 
-.js .skill-card.is-visible li {
+.motion-ready .skill-card.is-visible li {
   animation: skill-chip-in 520ms cubic-bezier(0.16, 1, 0.3, 1)
     var(--chip-delay) backwards;
 }
@@ -1572,11 +1586,11 @@ button {
   height: 520px;
 }
 
-.js .contact-panel.is-visible::before {
+.motion-ready .contact-panel.is-visible::before {
   animation: contact-ring-in 900ms 180ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
-.js .contact-panel.is-visible::after {
+.motion-ready .contact-panel.is-visible::after {
   animation: contact-ring-in 1.05s 290ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
@@ -1718,45 +1732,37 @@ button {
 }
 
 /* ---------- Reveal motion ---------- */
-.js [data-reveal] {
+.reveals-ready [data-reveal] {
   --reveal-delay: 0ms;
-  opacity: 0;
-  translate: 0 22px;
-  transition:
-    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay),
-    translate 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay);
 }
 
-.js [data-reveal].is-visible {
-  opacity: 1;
-  translate: none;
+.reveals-ready [data-reveal]:not(.is-visible) {
+  transform: translate3d(0, 22px, 0);
 }
 
-.js .project-card[data-reveal] {
-  transition:
-    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay),
-    translate 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay),
-    transform 220ms ease,
-    border-color 220ms ease,
-    background 220ms ease;
+.reveals-ready [data-reveal].is-visible {
+  animation: reveal-in 620ms cubic-bezier(0.16, 1, 0.3, 1)
+    var(--reveal-delay) backwards;
 }
 
-.js .skill-card[data-reveal] {
-  transition:
-    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay),
-    translate 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay),
-    background 180ms ease;
+@keyframes reveal-in {
+  from {
+    transform: translate3d(0, 22px, 0);
+  }
+  to {
+    transform: none;
+  }
 }
 
-.js .hero-copy [data-reveal]:nth-child(2) { --reveal-delay: 80ms; }
-.js .hero-copy [data-reveal]:nth-child(3) { --reveal-delay: 150ms; }
-.js .hero-copy [data-reveal]:nth-child(4) { --reveal-delay: 220ms; }
-.js .hero-copy [data-reveal]:nth-child(5) { --reveal-delay: 290ms; }
-.js .about-cards .info-card:nth-child(2) { --reveal-delay: 90ms; }
-.js .projects-grid .project-card:nth-child(3n + 2),
-.js .skills-grid .skill-card:nth-child(3n + 2) { --reveal-delay: 70ms; }
-.js .projects-grid .project-card:nth-child(3n + 3),
-.js .skills-grid .skill-card:nth-child(3n + 3) { --reveal-delay: 140ms; }
+.reveals-ready .hero-copy [data-reveal]:nth-child(2) { --reveal-delay: 70ms; }
+.reveals-ready .hero-copy [data-reveal]:nth-child(3) { --reveal-delay: 130ms; }
+.reveals-ready .hero-copy [data-reveal]:nth-child(4) { --reveal-delay: 190ms; }
+.reveals-ready .hero-copy [data-reveal]:nth-child(5) { --reveal-delay: 250ms; }
+.reveals-ready .about-cards .info-card:nth-child(2) { --reveal-delay: 80ms; }
+.reveals-ready .projects-grid .project-card:nth-child(3n + 2),
+.reveals-ready .skills-grid .skill-card:nth-child(3n + 2) { --reveal-delay: 60ms; }
+.reveals-ready .projects-grid .project-card:nth-child(3n + 3),
+.reveals-ready .skills-grid .skill-card:nth-child(3n + 3) { --reveal-delay: 120ms; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1120px) {
@@ -1825,6 +1831,76 @@ button {
 }
 
 @media (max-width: 720px) {
+  .page-glow {
+    border-radius: 0;
+    filter: none;
+    opacity: 1;
+  }
+
+  .page-glow--one {
+    top: 70px;
+    right: 0;
+    width: 100%;
+    height: 430px;
+    background: radial-gradient(circle at 100% 20%, rgba(155, 140, 255, 0.16), transparent 66%);
+  }
+
+  .page-glow--two {
+    top: 620px;
+    left: 0;
+    width: 100%;
+    height: 420px;
+    background: radial-gradient(circle at 0 50%, rgba(201, 255, 99, 0.09), transparent 68%);
+  }
+
+  .site-header,
+  .site-header.is-scrolled {
+    background: rgba(11, 13, 16, 0.96);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .motion-ready .hero::before {
+    opacity: 0.14;
+    animation: none;
+    background-position: 0 0;
+  }
+
+  .motion-ready .portrait-frame::before {
+    animation: portrait-wipe 520ms 80ms cubic-bezier(0.76, 0, 0.24, 1) both;
+  }
+
+  .motion-ready .portrait-frame::after {
+    animation: none;
+    transform: scaleX(0);
+  }
+
+  .motion-ready .portrait-label--bottom {
+    animation-duration: 380ms;
+    animation-delay: 540ms;
+  }
+
+  .reveals-ready [data-reveal].is-visible {
+    animation-duration: 480ms;
+  }
+
+  .motion-ready .project-card.is-visible .project-card__signal span,
+  .motion-ready .skill-card.is-visible li {
+    animation-duration: 360ms;
+    animation-delay: 60ms;
+  }
+
+  .motion-ready .contact-panel.is-visible::before {
+    animation-duration: 520ms;
+    animation-delay: 80ms;
+  }
+
+  .motion-ready .contact-panel.is-visible::after {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
   .container {
     width: min(calc(100% - 32px), var(--max-width));
   }
@@ -1986,19 +2062,25 @@ button {
     animation-iteration-count: 1 !important;
   }
 
-  .js [data-reveal] {
-    opacity: 1;
+  .reveals-ready [data-reveal],
+  .reveals-ready [data-reveal]:not(.is-visible),
+  .reveals-ready [data-reveal].is-visible {
     transform: none;
-    translate: none;
+    animation: none;
   }
 
   .hero::before,
   .availability-dot::after,
-  .js .project-card.is-visible .project-card__signal span,
-  .js .skill-card.is-visible li,
-  .js .contact-panel.is-visible::before,
-  .js .contact-panel.is-visible::after {
+  .motion-ready .project-card.is-visible .project-card__signal span,
+  .motion-ready .skill-card.is-visible li,
+  .motion-ready .contact-panel.is-visible::before,
+  .motion-ready .contact-panel.is-visible::after {
     animation: none;
+  }
+
+  .hero::before {
+    opacity: 0.16;
+    background-position: 0 0;
   }
 
   .portrait-frame::before,

@@ -17,6 +17,9 @@ const prefersReducedMotion = window.matchMedia(
 ).matches;
 
 let revealObserver;
+let revealSystemReady = false;
+let revealStartTimer;
+let revealFallbackFrame;
 
 function element(tagName, className, text) {
   const node = document.createElement(tagName);
@@ -131,15 +134,51 @@ function updateProjectCounts() {
   });
 }
 
+function revealElement(node) {
+  if (node.classList.contains('is-visible')) return;
+  node.classList.add('is-visible');
+  revealObserver?.unobserve(node);
+}
+
+function revealElementsInViewport(scope = document) {
+  const viewportHeight = document.documentElement.clientHeight || window.innerHeight;
+  const revealElements = scope.querySelectorAll('[data-reveal]:not(.is-visible)');
+
+  revealElements.forEach((node) => {
+    const bounds = node.getBoundingClientRect();
+    if (bounds.top <= viewportHeight * 0.98 && bounds.bottom >= 0) {
+      revealElement(node);
+    }
+  });
+}
+
 function observeRevealElements(scope = document) {
   const revealElements = scope.querySelectorAll('[data-reveal]:not(.is-visible)');
 
   if (!revealObserver || prefersReducedMotion) {
-    revealElements.forEach((node) => node.classList.add('is-visible'));
+    revealElements.forEach(revealElement);
     return;
   }
 
+  if (!revealSystemReady) return;
   revealElements.forEach((node) => revealObserver.observe(node));
+}
+
+function startRevealSystem() {
+  if (revealSystemReady) return;
+  revealSystemReady = true;
+  window.clearTimeout(revealStartTimer);
+  document.documentElement.classList.add('motion-ready');
+  revealElementsInViewport();
+  observeRevealElements();
+}
+
+function queueRevealFallback() {
+  if (!revealSystemReady || revealFallbackFrame) return;
+  revealFallbackFrame = window.requestAnimationFrame(() => {
+    revealFallbackFrame = undefined;
+    revealElementsInViewport();
+  });
 }
 
 function renderProjects(filter = 'all') {
@@ -194,9 +233,15 @@ function initialiseReveals() {
     prefersReducedMotion ||
     window.location.hash
   ) {
-    document.querySelectorAll('[data-reveal]').forEach((node) => {
-      node.classList.add('is-visible');
-    });
+    document.querySelectorAll('[data-reveal]').forEach(revealElement);
+
+    if (!prefersReducedMotion && !window.location.hash) {
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          document.documentElement.classList.add('motion-ready');
+        });
+      });
+    }
     return;
   }
 
@@ -204,8 +249,7 @@ function initialiseReveals() {
     (entries, observer) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
+        revealElement(entry.target);
       });
     },
     {
@@ -214,7 +258,15 @@ function initialiseReveals() {
     },
   );
 
-  observeRevealElements();
+  document.documentElement.classList.add('reveals-ready');
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(startRevealSystem);
+  });
+  revealStartTimer = window.setTimeout(startRevealSystem, 240);
+
+  window.addEventListener('scroll', queueRevealFallback, { passive: true });
+  window.addEventListener('resize', queueRevealFallback);
+  window.addEventListener('pageshow', queueRevealFallback);
 }
 
 function initialiseMenu() {
