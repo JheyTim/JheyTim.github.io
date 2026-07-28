@@ -1171,14 +1171,6 @@ button {
     background 220ms ease;
 }
 
-.project-card.is-featured {
-  min-height: 470px;
-  grid-column: span 6;
-  background:
-    linear-gradient(145deg, color-mix(in srgb, var(--card-accent) 8%, transparent), transparent 54%),
-    var(--surface);
-}
-
 .project-card::before {
   content: '';
   position: absolute;
@@ -1335,10 +1327,6 @@ button {
   font-weight: 650;
   letter-spacing: -0.045em;
   line-height: 1.16;
-}
-
-.project-card.is-featured h3 {
-  font-size: clamp(1.7rem, 2.7vw, 2.25rem);
 }
 
 .project-card__description {
@@ -1780,8 +1768,7 @@ button {
     grid-template-columns: 1fr;
   }
 
-  .project-card,
-  .project-card.is-featured {
+  .project-card {
     grid-column: span 6;
   }
 }
@@ -1992,8 +1979,7 @@ button {
     margin-top: 0.85rem;
   }
 
-  .project-card,
-  .project-card.is-featured {
+  .project-card {
     min-height: 420px;
     grid-column: span 12;
   }

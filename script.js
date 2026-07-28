@@ -187,10 +187,7 @@ function initialiseAnchorNavigation() {
 
 function createProjectCard(project, projectIndex) {
   const status = statusLabels[project.status] ? project.status : 'planned';
-  const card = element(
-    'article',
-    `project-card${project.featured ? ' is-featured' : ''}`,
-  );
+  const card = element('article', 'project-card');
 
   card.dataset.status = status;
   card.dataset.reveal = '';
@@ -220,7 +217,7 @@ function createProjectCard(project, projectIndex) {
   const tagList = element('ul', 'project-tags');
   tagList.setAttribute('aria-label', `Technologies used for ${project.title}`);
   const tags = Array.isArray(project.tags) ? project.tags : [];
-  const visibleTagLimit = project.featured ? 7 : 5;
+  const visibleTagLimit = 5;
 
   tags.slice(0, visibleTagLimit).forEach((tag) => {
     tagList.append(element('li', '', tag));

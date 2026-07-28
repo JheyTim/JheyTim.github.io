@@ -14,7 +14,6 @@ window.portfolioProjects = [
     title: 'SwiftCart',
     kind: 'Commerce platform',
     status: 'completed',
-    featured: true,
     accent: '#c9ff63',
     description:
       'A NestJS microservices monorepo for modern commerce, with an API gateway and dedicated services for identity, products, inventory, orders, payments, and notifications.',
@@ -31,28 +30,6 @@ window.portfolioProjects = [
       'Axios',
     ],
     url: 'https://github.com/JheyTim/swiftcart-backend',
-  },
-  {
-    title: 'BankLite',
-    kind: 'Fintech platform',
-    status: 'building',
-    featured: true,
-    accent: '#9b8cff',
-    description:
-      'A production-style digital banking backend built around typed services, asynchronous messaging, observable infrastructure, and AWS-compatible object storage.',
-    tags: [
-      'TypeScript',
-      'NestJS',
-      'PostgreSQL',
-      'RabbitMQ',
-      'JWT',
-      'TypeORM',
-      'Docker',
-      'Kubernetes',
-      'AWS S3',
-      'Prometheus',
-    ],
-    url: 'https://github.com/JheyTim/BankLite',
   },
   {
     title: 'Personal Document Vault',
