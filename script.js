@@ -217,28 +217,10 @@ function createProjectCard(project, projectIndex) {
   const tagList = element('ul', 'project-tags');
   tagList.setAttribute('aria-label', `Technologies used for ${project.title}`);
   const tags = Array.isArray(project.tags) ? project.tags : [];
-  const visibleTagLimit = 5;
 
-  tags.slice(0, visibleTagLimit).forEach((tag) => {
+  tags.forEach((tag) => {
     tagList.append(element('li', '', tag));
   });
-
-  if (tags.length > visibleTagLimit) {
-    const remainingTag = element(
-      'li',
-      '',
-      `+${tags.length - visibleTagLimit}`,
-    );
-    remainingTag.dataset.more = '';
-    remainingTag.title = tags.slice(visibleTagLimit).join(', ');
-    remainingTag.setAttribute(
-      'aria-label',
-      `Plus ${tags.length - visibleTagLimit} more: ${tags
-        .slice(visibleTagLimit)
-        .join(', ')}`,
-    );
-    tagList.append(remainingTag);
-  }
 
   body.append(tagList);
 
@@ -381,15 +363,11 @@ function initialiseProjectFilters() {
 }
 
 function initialiseReveals() {
-  // Deep links should land on fully visible content immediately.
-  if (
-    !('IntersectionObserver' in window) ||
-    prefersReducedMotion ||
-    window.location.hash
-  ) {
+  // Keep content visible when motion cannot be initialized safely.
+  if (!('IntersectionObserver' in window) || prefersReducedMotion) {
     document.querySelectorAll('[data-reveal]').forEach(revealElement);
 
-    if (!prefersReducedMotion && !window.location.hash) {
+    if (!prefersReducedMotion) {
       window.requestAnimationFrame(() => {
         window.requestAnimationFrame(() => {
           document.documentElement.classList.add('motion-ready');

@@ -1356,11 +1356,6 @@ button {
   padding: 0.45rem 0.55rem;
 }
 
-.project-tags li:last-child[data-more] {
-  border-color: transparent;
-  color: var(--muted);
-}
-
 .project-card__footer {
   margin-top: 1.2rem;
   border-top: 1px solid var(--line);
