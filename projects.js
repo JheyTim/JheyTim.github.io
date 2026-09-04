@@ -1,14 +1,16 @@
 /**
- * Portfolio project catalog
+ * Portfolio projects
  *
- * Add future work by copying an entry and setting its status to:
+ * Add a project by copying the template at the bottom into
+ * `window.portfolioProjects`. Keep the newest or most relevant work near the
+ * top, then choose one of these statuses:
+ *
  *   "completed" — released work
  *   "building"  — actively in progress
  *   "planned"   — public roadmap work
  *
- * The portfolio automatically updates the cards, filter counts, and empty states.
- * A URL is optional. Use note for private commercial work that does not have a
- * public source link.
+ * Cards, filters, counts, and empty states update automatically. Set `url` to
+ * `null` for private work; `note` is displayed in its place.
  */
 window.portfolioProjects = [
   {
@@ -215,16 +217,19 @@ window.portfolioProjects = [
 ];
 
 /*
-Future project example:
+Future project template:
 
 {
   title: 'Project name',
   kind: 'Project category',
   status: 'planned',
   accent: '#9b8cff',
-  description: 'A concise description of what the project will solve.',
+  description: 'A concise description of what the project does.',
   tags: ['TypeScript', 'NestJS'],
   url: null,
   note: 'Details coming soon',
 },
+
+Valid statuses: 'completed', 'building', and 'planned'.
+The note is only displayed when url is null.
 */
