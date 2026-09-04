@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +7,25 @@
       name="description"
       content="Portfolio of Timothy Jhey Sarmiento, a software engineer with 2+ years of commercial backend experience and hands-on AI/ML and NLP experience."
     />
-    <meta name="theme-color" content="#0b0d10" />
+    <meta id="themeColor" name="theme-color" content="#f7f8f3" />
+    <script>
+      (() => {
+        let theme = 'light';
+
+        try {
+          const storedTheme = localStorage.getItem('portfolio-theme');
+          if (storedTheme === 'light' || storedTheme === 'dark') {
+            theme = storedTheme;
+          }
+        } catch {
+          // Light remains the default when storage is unavailable.
+        }
+
+        document.documentElement.dataset.theme = theme;
+        document.getElementById('themeColor').content =
+          theme === 'dark' ? '#0b0d10' : '#f7f8f3';
+      })();
+    </script>
     <meta
       property="og:title"
       content="Timothy Jhey Sarmiento — Backend Software Engineer"
@@ -119,11 +137,43 @@
           <li><a href="#about">About</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#skills">Skills</a></li>
+          <li><a href="#certifications">Certifications</a></li>
         </ul>
 
-        <a class="nav-cta" href="#contact"
-          >Let’s talk <span aria-hidden="true">↗</span></a
-        >
+        <div class="nav-actions">
+          <a class="nav-cta" href="#contact"
+            >Let’s talk <span aria-hidden="true">↗</span></a
+          >
+
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            type="button"
+            aria-label="Dark mode"
+            aria-pressed="false"
+            title="Switch to dark mode"
+          >
+            <svg
+              class="theme-toggle__icon theme-toggle__icon--moon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
+            </svg>
+            <svg
+              class="theme-toggle__icon theme-toggle__icon--sun"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path
+                d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+              />
+            </svg>
+          </button>
+        </div>
 
         <button
           class="menu-toggle"
@@ -144,7 +194,8 @@
         <a href="#about"><span>01</span> About</a>
         <a href="#projects"><span>02</span> Projects</a>
         <a href="#skills"><span>03</span> Skills</a>
-        <a href="#contact"><span>04</span> Contact</a>
+        <a href="#certifications"><span>04</span> Certifications</a>
+        <a href="#contact"><span>05</span> Contact</a>
       </nav>
       <p>Manila, Philippines · Open to remote opportunities</p>
     </div>
@@ -499,6 +550,535 @@
       </section>
 
       <section
+        class="section section--credentials"
+        id="certifications"
+        aria-labelledby="certifications-title"
+      >
+        <div class="container">
+          <div class="credentials-heading">
+            <div class="section-heading" data-reveal>
+              <p class="section-kicker"><span>04</span> Certifications</p>
+              <h2 id="certifications-title">
+                Learning backed by verifiable credentials.
+              </h2>
+            </div>
+            <p class="section-summary" data-reveal>
+              15 credentials across backend engineering, cloud architecture,
+              DevOps, testing, and application security. Every credential links
+              to its public verification page.
+            </p>
+          </div>
+
+          <div class="credentials-grid">
+            <article
+              class="credential-card"
+              data-reveal
+              style="--credential-accent: var(--udemy)"
+            >
+              <header class="credential-card__header">
+                <span class="credential-provider-mark" aria-hidden="true">U</span>
+                <div class="credential-provider">
+                  <strong>Udemy</strong>
+                  <span>Course certificate</span>
+                </div>
+                <time datetime="2026-01-04" aria-label="Issued January 4, 2026">Jan 2026</time>
+              </header>
+              <h3>JavaScript Unit Testing - The Practical Guide</h3>
+              <p class="credential-id">
+                <span>Credential ID</span>
+                UC-7cb52c53-024a-44c5-a578-cc728f387b38
+              </p>
+              <ul class="credential-skills" aria-label="Skills covered">
+                <li>Unit Testing</li>
+                <li>Vitest</li>
+              </ul>
+              <a
+                class="credential-link"
+                href="https://www.udemy.com/certificate/UC-7cb52c53-024a-44c5-a578-cc728f387b38/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View JavaScript Unit Testing - The Practical Guide credential (opens in a new tab)"
+              >
+                View credential <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article
+              class="credential-card"
+              data-reveal
+              style="--credential-accent: var(--udemy)"
+            >
+              <header class="credential-card__header">
+                <span class="credential-provider-mark" aria-hidden="true">U</span>
+                <div class="credential-provider">
+                  <strong>Udemy</strong>
+                  <span>Course certificate</span>
+                </div>
+                <time datetime="2025-12-24" aria-label="Issued December 24, 2025">Dec 2025</time>
+              </header>
+              <h3>Docker &amp; Kubernetes: The Practical Guide</h3>
+              <p class="credential-id">
+                <span>Credential ID</span>
+                UC-eb98ef82-6b05-48f3-ac41-75ab6805243d
+              </p>
+              <ul class="credential-skills" aria-label="Skills covered">
+                <li>Docker</li>
+                <li>Kubernetes</li>
+              </ul>
+              <a
+                class="credential-link"
+                href="https://www.udemy.com/certificate/UC-eb98ef82-6b05-48f3-ac41-75ab6805243d/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Docker and Kubernetes: The Practical Guide credential (opens in a new tab)"
+              >
+                View credential <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article
+              class="credential-card"
+              data-reveal
+              style="--credential-accent: var(--udemy)"
+            >
+              <header class="credential-card__header">
+                <span class="credential-provider-mark" aria-hidden="true">U</span>
+                <div class="credential-provider">
+                  <strong>Udemy</strong>
+                  <span>Course certificate</span>
+                </div>
+                <time datetime="2025-09-01" aria-label="Issued September 1, 2025">Sep 2025</time>
+              </header>
+              <h3>Web Security &amp; Bug Bounty: Learn Penetration Testing</h3>
+              <p class="credential-id">
+                <span>Credential ID</span>
+                UC-cc9a45dd-c9b9-4070-9f4f-7bbb75098ec9
+              </p>
+              <ul class="credential-skills" aria-label="Skills covered">
+                <li>Web Security</li>
+                <li>Penetration Testing</li>
+              </ul>
+              <a
+                class="credential-link"
+                href="https://www.udemy.com/certificate/UC-cc9a45dd-c9b9-4070-9f4f-7bbb75098ec9/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Web Security and Bug Bounty: Learn Penetration Testing credential (opens in a new tab)"
+              >
+                View credential <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article
+              class="credential-card"
+              data-reveal
+              style="--credential-accent: var(--udemy)"
+            >
+              <header class="credential-card__header">
+                <span class="credential-provider-mark" aria-hidden="true">U</span>
+                <div class="credential-provider">
+                  <strong>Udemy</strong>
+                  <span>Course certificate</span>
+                </div>
+                <time datetime="2024-12-08" aria-label="Issued December 8, 2024">Dec 2024</time>
+              </header>
+              <h3>NestJS Zero to Hero - Modern TypeScript Back-end Development</h3>
+              <p class="credential-id">
+                <span>Credential ID</span>
+                UC-f25b65ab-c3ab-401a-a39f-64e7e3a8bac7
+              </p>
+              <ul class="credential-skills" aria-label="Skills covered">
+                <li>NestJS</li>
+                <li>TypeORM</li>
+              </ul>
+              <a
+                class="credential-link"
+                href="https://www.udemy.com/certificate/UC-f25b65ab-c3ab-401a-a39f-64e7e3a8bac7/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View NestJS Zero to Hero - Modern TypeScript Back-end Development credential (opens in a new tab)"
+              >
+                View credential <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article
+              class="credential-card"
+              data-reveal
+              style="--credential-accent: var(--udemy)"
+            >
+              <header class="credential-card__header">
+                <span class="credential-provider-mark" aria-hidden="true">U</span>
+                <div class="credential-provider">
+                  <strong>Udemy</strong>
+                  <span>Course certificate</span>
+                </div>
+                <time datetime="2024-09-12" aria-label="Issued September 12, 2024">Sep 2024</time>
+              </header>
+              <h3>GitLab CI/CD: Pipelines, CI/CD and DevOps for Beginners</h3>
+              <p class="credential-id">
+                <span>Credential ID</span>
+                UC-812a4b98-d898-4c3c-8e34-820b5e9b39f4
+              </p>
+              <ul class="credential-skills" aria-label="Skills covered">
+                <li>CI/CD</li>
+                <li>GitLab</li>
+              </ul>
+              <a
+                class="credential-link"
+                href="https://www.udemy.com/certificate/UC-812a4b98-d898-4c3c-8e34-820b5e9b39f4/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View GitLab CI/CD: Pipelines, CI/CD and DevOps for Beginners credential (opens in a new tab)"
+              >
+                View credential <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article
+              class="credential-card"
+              data-reveal
+              style="--credential-accent: var(--udemy)"
+            >
+              <header class="credential-card__header">
+                <span class="credential-provider-mark" aria-hidden="true">U</span>
+                <div class="credential-provider">
+                  <strong>Udemy</strong>
+                  <span>Course certificate</span>
+                </div>
+                <time datetime="2024-08-26" aria-label="Issued August 26, 2024">Aug 2024</time>
+              </header>
+              <h3>JavaScript Architecture: Design Patterns &amp; SOLID Principles</h3>
+              <p class="credential-id">
+                <span>Credential ID</span>
+                UC-459d95e3-acc2-46dd-abbc-f9cc966e8693
+              </p>
+              <ul class="credential-skills" aria-label="Skills covered">
+                <li>Design Patterns</li>
+                <li>SOLID</li>
+              </ul>
+              <a
+                class="credential-link"
+                href="https://www.udemy.com/certificate/UC-459d95e3-acc2-46dd-abbc-f9cc966e8693/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View JavaScript Architecture: Design Patterns and SOLID Principles credential (opens in a new tab)"
+              >
+                View credential <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article
+              class="credential-card"
+              data-reveal
+              style="--credential-accent: var(--udemy)"
+            >
+              <header class="credential-card__header">
+                <span class="credential-provider-mark" aria-hidden="true">U</span>
+                <div class="credential-provider">
+                  <strong>Udemy</strong>
+                  <span>Course certificate</span>
+                </div>
+                <time datetime="2024-07-10" aria-label="Issued July 10, 2024">Jul 2024</time>
+              </header>
+              <h3>Understanding TypeScript</h3>
+              <p class="credential-id">
+                <span>Credential ID</span>
+                UC-57c6a044-36fc-4311-a168-520605f9bcad
+              </p>
+              <ul class="credential-skills" aria-label="Skills covered">
+                <li>TypeScript</li>
+              </ul>
+              <a
+                class="credential-link"
+                href="https://www.udemy.com/certificate/UC-57c6a044-36fc-4311-a168-520605f9bcad/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Understanding TypeScript credential (opens in a new tab)"
+              >
+                View credential <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article
+              class="credential-card"
+              data-reveal
+              style="--credential-accent: var(--udemy)"
+            >
+              <header class="credential-card__header">
+                <span class="credential-provider-mark" aria-hidden="true">U</span>
+                <div class="credential-provider">
+                  <strong>Udemy</strong>
+                  <span>Course certificate</span>
+                </div>
+                <time datetime="2024-04-16" aria-label="Issued April 16, 2024">Apr 2024</time>
+              </header>
+              <h3>Object-oriented Programming in JavaScript</h3>
+              <p class="credential-id">
+                <span>Credential ID</span>
+                UC-580cd10a-df51-41a2-b79f-d65d0a2a16fd
+              </p>
+              <ul class="credential-skills" aria-label="Skills covered">
+                <li>OOP</li>
+                <li>JavaScript</li>
+              </ul>
+              <a
+                class="credential-link"
+                href="https://www.udemy.com/certificate/UC-580cd10a-df51-41a2-b79f-d65d0a2a16fd/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Object-oriented Programming in JavaScript credential (opens in a new tab)"
+              >
+                View credential <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article
+              class="credential-card"
+              data-reveal
+              style="--credential-accent: var(--aws)"
+            >
+              <header class="credential-card__header">
+                <span
+                  class="credential-provider-mark credential-provider-mark--aws"
+                  aria-hidden="true"
+                  >aws</span
+                >
+                <div class="credential-provider">
+                  <strong>Amazon Web Services</strong>
+                  <span>Digital badge</span>
+                </div>
+                <time datetime="2024-02-21" aria-label="Issued February 21, 2024">Feb 2024</time>
+              </header>
+              <h3>AWS Cloud Quest: Solutions Architect</h3>
+              <p class="credential-id">
+                <span>Credential ID</span>
+                9344d02e-1008-4b43-8de8-9c56342b5057
+              </p>
+              <ul class="credential-skills" aria-label="Skills covered">
+                <li>AWS</li>
+                <li>Solutions Architecture</li>
+              </ul>
+              <a
+                class="credential-link"
+                href="https://www.credly.com/badges/9344d02e-1008-4b43-8de8-9c56342b5057/linked_in_profile"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View AWS Cloud Quest: Solutions Architect credential (opens in a new tab)"
+              >
+                View credential <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article
+              class="credential-card"
+              data-reveal
+              style="--credential-accent: var(--aws)"
+            >
+              <header class="credential-card__header">
+                <span
+                  class="credential-provider-mark credential-provider-mark--aws"
+                  aria-hidden="true"
+                  >aws</span
+                >
+                <div class="credential-provider">
+                  <strong>Amazon Web Services</strong>
+                  <span>Digital badge</span>
+                </div>
+                <time datetime="2024-02-14" aria-label="Issued February 14, 2024">Feb 2024</time>
+              </header>
+              <h3>AWS Cloud Quest: Cloud Practitioner</h3>
+              <p class="credential-id">
+                <span>Credential ID</span>
+                bfaba084-d531-4ac2-aa53-b828a4e84982
+              </p>
+              <ul class="credential-skills" aria-label="Skills covered">
+                <li>AWS</li>
+                <li>Cloud Fundamentals</li>
+              </ul>
+              <a
+                class="credential-link"
+                href="https://www.credly.com/badges/bfaba084-d531-4ac2-aa53-b828a4e84982/linked_in_profile"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View AWS Cloud Quest: Cloud Practitioner credential (opens in a new tab)"
+              >
+                View credential <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article
+              class="credential-card"
+              data-reveal
+              style="--credential-accent: var(--mongodb)"
+            >
+              <header class="credential-card__header">
+                <span
+                  class="credential-provider-mark credential-provider-mark--mongodb"
+                  aria-hidden="true"
+                  >M</span
+                >
+                <div class="credential-provider">
+                  <strong>MongoDB</strong>
+                  <span>Certification</span>
+                </div>
+                <time datetime="2023-08-10" aria-label="Issued August 10, 2023">Aug 2023</time>
+              </header>
+              <h3>SI Associate Certification Program</h3>
+              <p class="credential-id">
+                <span>Credential ID</span>
+                MDBvs0hyrl2sp
+              </p>
+              <ul class="credential-skills" aria-label="Skills covered">
+                <li>MongoDB</li>
+              </ul>
+              <a
+                class="credential-link"
+                href="https://learn.mongodb.com/c/MPYijCo2QO2rCfFenjWhiA"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View SI Associate Certification Program credential (opens in a new tab)"
+              >
+                View credential <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article
+              class="credential-card"
+              data-reveal
+              style="--credential-accent: var(--udemy)"
+            >
+              <header class="credential-card__header">
+                <span class="credential-provider-mark" aria-hidden="true">U</span>
+                <div class="credential-provider">
+                  <strong>Udemy</strong>
+                  <span>Course certificate</span>
+                </div>
+                <time datetime="2021-10-08" aria-label="Issued October 8, 2021">Oct 2021</time>
+              </header>
+              <h3>Serverless Framework Bootcamp: Node.js, AWS &amp; Microservices</h3>
+              <p class="credential-id">
+                <span>Credential ID</span>
+                UC-4a129961-4138-4662-a54f-47edeffc523c
+              </p>
+              <ul class="credential-skills" aria-label="Skills covered">
+                <li>Serverless Framework</li>
+                <li>AWS</li>
+              </ul>
+              <a
+                class="credential-link"
+                href="https://www.udemy.com/certificate/UC-4a129961-4138-4662-a54f-47edeffc523c/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Serverless Framework Bootcamp: Node.js, AWS and Microservices credential (opens in a new tab)"
+              >
+                View credential <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article
+              class="credential-card"
+              data-reveal
+              style="--credential-accent: var(--udemy)"
+            >
+              <header class="credential-card__header">
+                <span class="credential-provider-mark" aria-hidden="true">U</span>
+                <div class="credential-provider">
+                  <strong>Udemy</strong>
+                  <span>Course certificate</span>
+                </div>
+                <time datetime="2021-08-11" aria-label="Issued August 11, 2021">Aug 2021</time>
+              </header>
+              <h3>Git from Basics to Advanced: Practical Guide for Developers</h3>
+              <p class="credential-id">
+                <span>Credential ID</span>
+                UC-10d559b1-4850-44a4-8088-a8da0db6ead8
+              </p>
+              <ul class="credential-skills" aria-label="Skills covered">
+                <li>Git</li>
+              </ul>
+              <a
+                class="credential-link"
+                href="https://www.udemy.com/certificate/UC-10d559b1-4850-44a4-8088-a8da0db6ead8/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Git from Basics to Advanced: Practical Guide for Developers credential (opens in a new tab)"
+              >
+                View credential <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article
+              class="credential-card"
+              data-reveal
+              style="--credential-accent: var(--udemy)"
+            >
+              <header class="credential-card__header">
+                <span class="credential-provider-mark" aria-hidden="true">U</span>
+                <div class="credential-provider">
+                  <strong>Udemy</strong>
+                  <span>Course certificate</span>
+                </div>
+                <time datetime="2021-07-24" aria-label="Issued July 24, 2021">Jul 2021</time>
+              </header>
+              <h3>NodeJS - The Complete Guide (MVC, REST APIs, GraphQL, Deno)</h3>
+              <p class="credential-id">
+                <span>Credential ID</span>
+                UC-91853869-f8e8-4843-8ece-3a72cb6cd829
+              </p>
+              <ul class="credential-skills" aria-label="Skills covered">
+                <li>Node.js</li>
+                <li>REST APIs</li>
+                <li>GraphQL</li>
+              </ul>
+              <a
+                class="credential-link"
+                href="https://www.udemy.com/certificate/UC-91853869-f8e8-4843-8ece-3a72cb6cd829/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View NodeJS - The Complete Guide credential (opens in a new tab)"
+              >
+                View credential <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+
+            <article
+              class="credential-card"
+              data-reveal
+              style="--credential-accent: var(--udemy)"
+            >
+              <header class="credential-card__header">
+                <span class="credential-provider-mark" aria-hidden="true">U</span>
+                <div class="credential-provider">
+                  <strong>Udemy</strong>
+                  <span>Course certificate</span>
+                </div>
+                <time datetime="2021-07-16" aria-label="Issued July 16, 2021">Jul 2021</time>
+              </header>
+              <h3>The Complete Node.js Developer Course (3rd Edition)</h3>
+              <p class="credential-id">
+                <span>Credential ID</span>
+                UC-c882a6d1-a985-4985-be76-ed1b310f534f
+              </p>
+              <ul class="credential-skills" aria-label="Skills covered">
+                <li>Node.js</li>
+                <li>Express.js</li>
+              </ul>
+              <a
+                class="credential-link"
+                href="https://www.udemy.com/certificate/UC-c882a6d1-a985-4985-be76-ed1b310f534f/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View The Complete Node.js Developer Course credential (opens in a new tab)"
+              >
+                View credential <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
         class="section section--contact"
         id="contact"
         aria-labelledby="contact-title"
@@ -507,7 +1087,7 @@
           <div class="contact-panel" data-reveal>
             <div class="contact-panel__copy">
               <p class="section-kicker section-kicker--dark">
-                <span>04</span> Contact
+                <span>05</span> Contact
               </p>
               <h2 id="contact-title">Get in touch.</h2>
               <p>

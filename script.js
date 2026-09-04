@@ -8,6 +8,12 @@ const statusLabels = {
   planned: 'Roadmap',
 };
 
+const themeStorageKey = 'portfolio-theme';
+const themeColors = {
+  light: '#f7f8f3',
+  dark: '#0b0d10',
+};
+
 const projectsGrid = document.getElementById('projectsGrid');
 const projectEmpty = document.getElementById('projectEmpty');
 const projectResult = document.getElementById('projectResult');
@@ -406,8 +412,51 @@ function initialiseReveals() {
   window.addEventListener('pageshow', queueRevealFallback);
 }
 
+function initialiseTheme() {
+  const root = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  const themeColor = document.getElementById('themeColor');
+
+  function applyTheme(theme, { persist = false } = {}) {
+    const resolvedTheme = theme === 'dark' ? 'dark' : 'light';
+    const isDark = resolvedTheme === 'dark';
+
+    root.dataset.theme = resolvedTheme;
+    themeColor?.setAttribute('content', themeColors[resolvedTheme]);
+
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.title = `Switch to ${isDark ? 'light' : 'dark'} mode`;
+    }
+
+    if (!persist) return;
+
+    try {
+      localStorage.setItem(themeStorageKey, resolvedTheme);
+    } catch {
+      // The toggle still works when storage is blocked or unavailable.
+    }
+  }
+
+  applyTheme(root.dataset.theme);
+
+  themeToggle?.addEventListener('click', () => {
+    const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(nextTheme, { persist: true });
+  });
+
+  window.addEventListener('storage', (event) => {
+    if (event.key === themeStorageKey) {
+      applyTheme(event.newValue === 'dark' ? 'dark' : 'light');
+    } else if (event.key === null) {
+      applyTheme('light');
+    }
+  });
+}
+
 function initialiseMenu() {
   const menuToggle = document.getElementById('menuToggle');
+  const themeToggle = document.getElementById('themeToggle');
   const mobileMenu = document.getElementById('mobileMenu');
   const brandLink = document.querySelector('.brand[href="#top"]');
 
@@ -467,15 +516,15 @@ function initialiseMenu() {
 
     if (event.key !== 'Tab' || menuLinks.length === 0) return;
 
-    const firstLink = menuLinks[0];
     const lastLink = menuLinks[menuLinks.length - 1];
+    const firstFocusable = themeToggle || menuToggle;
 
-    if (event.shiftKey && document.activeElement === firstLink) {
+    if (event.shiftKey && document.activeElement === firstFocusable) {
       event.preventDefault();
       lastLink.focus();
     } else if (!event.shiftKey && document.activeElement === lastLink) {
       event.preventDefault();
-      firstLink.focus();
+      firstFocusable.focus();
     }
   });
 
@@ -540,6 +589,7 @@ function restoreDeepLink() {
   });
 }
 
+initialiseTheme();
 initialiseReveals();
 initialiseProjectFilters();
 initialiseMenu();
