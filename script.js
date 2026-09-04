@@ -215,7 +215,10 @@ function createProjectCard(project, projectIndex) {
   body.append(element('p', 'project-card__description', project.description));
 
   const tagList = element('ul', 'project-tags');
-  tagList.setAttribute('aria-label', `Technologies used for ${project.title}`);
+  tagList.setAttribute(
+    'aria-label',
+    `Skills and technologies used for ${project.title}`,
+  );
   const tags = Array.isArray(project.tags) ? project.tags : [];
 
   tags.forEach((tag) => {
@@ -242,7 +245,9 @@ function createProjectCard(project, projectIndex) {
     projectLink.append(arrow);
     footer.append(projectLink);
   } else {
-    footer.append(element('span', 'project-link--disabled', 'Details coming soon'));
+    footer.append(
+      element('span', 'project-link--disabled', project.note || 'Details coming soon'),
+    );
   }
 
   card.append(header, signal, body, footer);

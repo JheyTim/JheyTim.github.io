@@ -7,9 +7,61 @@
  *   "planned"   — public roadmap work
  *
  * The portfolio automatically updates the cards, filter counts, and empty states.
- * A URL is optional, which is useful for projects that are not public yet.
+ * A URL is optional. Use note for private commercial work that does not have a
+ * public source link.
  */
 window.portfolioProjects = [
+  {
+    title: 'Multi-channel payment integrations',
+    kind: 'Payments platform',
+    status: 'completed',
+    accent: '#c9ff63',
+    description:
+      'Built serverless backend APIs and GraphQL services for a payment platform supporting e-wallets, cards, direct debit, and online banking. Partnered with frontend engineers to integrate consumer and corporate payment flows.',
+    tags: [
+      'Serverless Framework',
+      'AWS',
+      'GraphQL',
+      'Payments',
+      'API Integration',
+    ],
+    url: null,
+    note: 'Client work · Private',
+  },
+  {
+    title: 'Digital wallet services',
+    kind: 'Financial technology',
+    status: 'completed',
+    accent: '#72c7ff',
+    description:
+      'Served as backend sub-lead for a mobile wallet supporting bill payments, prepaid mobile load, RFID top-ups, wallet transfers, and QR payments. Delivered serverless APIs, maintained API documentation, coordinated mobile integration, and onboarded backend engineers.',
+    tags: [
+      'Serverless Framework',
+      'AWS',
+      'REST APIs',
+      'API Documentation',
+      'Backend Leadership',
+    ],
+    url: null,
+    note: 'Client work · Private',
+  },
+  {
+    title: 'Telecommunications API integrations',
+    kind: 'Integration platform',
+    status: 'completed',
+    accent: '#9b8cff',
+    description:
+      'Developed and documented serverless APIs for a centralized integration layer that standardized services across mobile, fixed-line, and broadband channels.',
+    tags: [
+      'Serverless Framework',
+      'AWS',
+      'REST APIs',
+      'API Integration',
+      'API Documentation',
+    ],
+    url: null,
+    note: 'Client work · Private',
+  },
   {
     title: 'SwiftCart',
     kind: 'Commerce platform',
@@ -173,5 +225,6 @@ Future project example:
   description: 'A concise description of what the project will solve.',
   tags: ['TypeScript', 'NestJS'],
   url: null,
+  note: 'Details coming soon',
 },
 */
