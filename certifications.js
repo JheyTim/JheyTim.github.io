@@ -103,7 +103,7 @@ window.portfolioCertifications = [
     issued: '2024-02-21',
     credentialId: '9344d02e-1008-4b43-8de8-9c56342b5057',
     skills: ['AWS', 'Solutions Architecture'],
-    url: 'https://www.credly.com/badges/9344d02e-1008-4b43-8de8-9c56342b5057/linked_in_profile',
+    url: 'https://www.credly.com/badges/9344d02e-1008-4b43-8de8-9c56342b5057/',
   },
   {
     title: 'AWS Cloud Quest: Cloud Practitioner',
@@ -111,7 +111,7 @@ window.portfolioCertifications = [
     issued: '2024-02-14',
     credentialId: 'bfaba084-d531-4ac2-aa53-b828a4e84982',
     skills: ['AWS', 'Cloud Fundamentals'],
-    url: 'https://www.credly.com/badges/bfaba084-d531-4ac2-aa53-b828a4e84982/linked_in_profile',
+    url: 'https://www.credly.com/badges/bfaba084-d531-4ac2-aa53-b828a4e84982/',
   },
   {
     title: 'SI Associate Certification Program',
@@ -119,7 +119,7 @@ window.portfolioCertifications = [
     issued: '2023-08-10',
     credentialId: 'MDBvs0hyrl2sp',
     skills: ['MongoDB'],
-    url: 'https://learn.mongodb.com/c/MPYijCo2QO2rCfFenjWhiA',
+    url: 'https://learn.mongodb.com/c/MPYijCo2QO2rCfFenjWhiA/',
   },
   {
     title: 'Serverless Framework Bootcamp: Node.js, AWS & Microservices',
