@@ -191,6 +191,16 @@ window.portfolioProjects = [
     ],
     url: 'https://github.com/JheyTim/healthcare-management-system',
   },
+  {
+    title: 'Digital Twin',
+    kind: 'AI career assistant',
+    status: 'completed', // Use 'building' if still in progress
+    accent: '#9b8cff',
+    description:
+      'An AI chatbot that answers questions about my professional background using my LinkedIn profile and personal summary, with Pushover notifications for contact requests and unanswered questions.',
+    tags: ['Python', 'Gradio', 'OpenAI', 'Pushover'],
+    url: 'https://github.com/JheyTim/digital-twin',
+  },
 ];
 
 /*
