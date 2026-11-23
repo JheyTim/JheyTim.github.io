@@ -1,18 +1,48 @@
 /**
  * Portfolio projects
  *
- * Add a project by copying the template at the bottom into
- * `window.portfolioProjects`. Keep the newest or most relevant work near the
- * top, then choose one of these statuses:
+ * Add AI applications to `window.portfolioAIProjects` and backend work to
+ * `window.portfolioBackendProjects`. Keep the newest or most relevant work
+ * near the top of its own list, then choose one of these statuses:
  *
  *   "completed" — released work
  *   "building"  — actively in progress
  *   "planned"   — public roadmap work
  *
- * Cards, filters, counts, and empty states update automatically. Set `url` to
- * `null` for private work; `note` is displayed in its place.
+ * Cards, tabs, filters, counts, and empty states update automatically. Set
+ * `url` to `null` for private work; `note` is displayed in its place.
  */
-window.portfolioProjects = [
+window.portfolioAIProjects = [
+  {
+    title: 'AI Document Intelligence',
+    kind: 'AI document processing',
+    status: 'completed',
+    accent: '#72c7ff',
+    description:
+      'A Streamlit app that extracts full text, key-value fields, tables, and uncertain text from document images with OpenAI’s Responses API. Document profiles, JSON Schema checks, content warnings, and TXT, Markdown, and JSON exports help make each result reviewable.',
+    tags: [
+      'Python',
+      'Streamlit',
+      'OpenAI Responses API',
+      'Multimodal AI',
+      'Document Processing',
+      'JSON Schema',
+    ],
+    url: 'https://github.com/JheyTim/ai-document-intelligence',
+  },
+  {
+    title: 'Digital Twin',
+    kind: 'AI career assistant',
+    status: 'completed',
+    accent: '#9b8cff',
+    description:
+      'A career-focused chatbot grounded in my LinkedIn profile and personal summary. Built with Gradio and OpenAI chat completions, it uses tool calls to notify me through Pushover about contact requests and questions it could not answer.',
+    tags: ['Python', 'Gradio', 'OpenAI API', 'LLM Tool Calling', 'Pushover'],
+    url: 'https://github.com/JheyTim/digital-twin',
+  },
+];
+
+window.portfolioBackendProjects = [
   {
     title: 'Multi-channel payment integrations',
     kind: 'Payments platform',
@@ -191,19 +221,12 @@ window.portfolioProjects = [
     ],
     url: 'https://github.com/JheyTim/healthcare-management-system',
   },
-  {
-    title: 'Digital Twin',
-    kind: 'AI career assistant',
-    status: 'completed', // Use 'building' if still in progress
-    accent: '#9b8cff',
-    description:
-      'An AI chatbot that answers questions about my professional background using my LinkedIn profile and personal summary, with Pushover notifications for contact requests and unanswered questions.',
-    tags: ['Python', 'Gradio', 'OpenAI', 'Pushover'],
-    url: 'https://github.com/JheyTim/digital-twin',
-  },
 ];
 
 /*
+To add work later, copy the template into the matching AI or Backend array.
+The array determines the tab automatically; no `track` property is needed.
+
 Future project template:
 
 {
