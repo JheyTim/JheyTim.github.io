@@ -14,6 +14,26 @@
  */
 window.portfolioAIProjects = [
   {
+    title: 'League of Legends Esports News AI',
+    kind: 'AI esports news platform',
+    status: 'building',
+    accent: '#c9ff63',
+    description:
+      'A platform for League of Legends esports news. This covers collecting and classifying stories, source-backed AI analysis and draft generation, and human review before publication. Planned stack: Python, FastAPI, SQLite, Streamlit, and Groq-hosted GPT-OSS 120B, with a later FFmpeg video workflow and Meta Graph API publishing.',
+    tags: [
+      'Python',
+      'FastAPI',
+      'Groq',
+      'GPT-OSS 120B',
+      'Streamlit',
+      'SQLite',
+      'FFmpeg',
+      'Meta Graph API',
+      'Human-in-the-loop AI',
+    ],
+    url: 'https://github.com/JheyTim/lol-esports-news-ai',
+  },
+  {
     title: 'AI Document Intelligence',
     kind: 'AI document processing',
     status: 'completed',
